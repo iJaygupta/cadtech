@@ -1,0 +1,32 @@
+#Hme-client{
+    // background: #111f27;
+    background: #363636;
+    padding: 25px 10px 60px;
+  .client-logo {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 20px;
+    margin: 5px;
+    width: 180px;
+    height: 180px;
+    &:hover img {
+        -webkit-filter: none;
+        filter: none;
+        transform: scale(1.1);
+      }
+    img {
+        transition: all 0.3s ease-in-out;
+        width: 50%;
+        height: 50%;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+      }
+  }
+  
+}
+
+

@@ -1,0 +1,207 @@
+.header-nav-wrapper {
+    width: 100%;
+    top: 0;
+    background-color: $nav-background;
+    // position: sticky;
+    z-index: 20;
+  }
+  
+  .header-bar {
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    -webkit-animation: headerbar 15s ease infinite;
+    -moz-animation: headerbar 15s ease infinite;
+    animation: headerbar 15s ease infinite;
+  }
+  
+  .header-navbar {
+    display: grid;
+    grid-template: ". link .  menu search .";
+    grid-template-columns: 7% max-content  1fr max-content max-content 7%;
+    height: 65px;
+    line-height: 50px;
+    color: $nav-text-color;
+  }
+  
+  .header-image {
+    grid-area: link;
+    width: 170px;
+    height: 170px;
+    margin-left: 50px;
+    margin-top: -5px;
+  }
+  
+  .header-nav {
+    grid-area: menu;
+    margin-right: 25px;
+  
+    .header-nav-item {
+      .header-list-icon {
+        padding-right: 5px;
+      }
+  
+      display: inline;
+      list-style: none;
+      padding-right: 15px;
+      a{
+        color : $nav-text-color;
+      }
+    }
+  
+    // .active-item {
+    //   color: $nav-text-color;
+    // }
+  }
+  
+  .header-nav-item .header-list-name {
+    font-size: $nav-fontSize;
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.3s ease-out;
+  }
+  
+  .header-nav-item a:hover {
+    color: $nav-text-color;
+  }
+  
+  .header-menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: $nav-text-color;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .header-menu-toggle {
+    grid-area: menu;
+    justify-self: end;
+    margin-right: 25px;
+    display: none;
+  }
+  
+  .header-menu-toggle:hover {
+    cursor: pointer;
+  }
+  
+  #header-mobile-menu.is-active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  
+  #header-mobile-menu.is-active .bar:nth-child(1) {
+    -webkit-transform: translateY(8px) rotate(45deg);
+    -ms-transform: translateY(8px) rotate(45deg);
+    -o-transform: translateY(8px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  #header-mobile-menu.is-active .bar:nth-child(3) {
+    -webkit-transform: translateY(-8px) rotate(-45deg);
+    -ms-transform: translateY(-8px) rotate(-45deg);
+    -o-transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  .disabled {
+    display: none;
+  }
+    
+  @-webkit-keyframes headerbar {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  @-moz-keyframes headerbar {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  @keyframes headerbar {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  @media only screen and (max-width: 830px) {
+    .header-nav-open {
+      overflow: hidden;
+    }
+  
+    .header-navbar .header-nav {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 65px;
+      background-color: $nav-active-background;
+      width: 100%;
+      height: calc(100vh - 65px);
+      transform: translate(-101%);
+      text-align: justify;
+      overflow: hidden;
+      z-index: 10;
+      transition: all .5s ease-in-out;
+      .header-nav-item {
+        text-align: center;
+        padding: 0;
+        border-bottom: 1px solid gray ;
+        a{
+          color : #000;
+        }
+      }
+    }
+    .header-navbar li {
+      list-style: none;
+    }
+  
+    // .header-navbar li:first-child {
+    //   margin-top: 50px;
+    // }
+  
+    .header-navbar li .header-list-name {
+      font-size: calc($nav-fontSize + 2px);
+    }
+  
+    // .header-nav-item {
+    //   text-align: center;
+    //   padding: 0;
+    // }
+    .header-menu-toggle,
+    .bar {
+      display: block;
+      cursor: pointer;
+      margin-top: 13px;
+    }
+  
+    .header-mobile-nav {
+      padding: 45px 40px 8px;
+      transform: translate(0%) !important;
+    }
+  
+    .search-input {
+      margin-right: 15px;
+    }
+  }
+  

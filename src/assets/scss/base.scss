@@ -1,0 +1,88 @@
+@import "./_variables";
+@import "./_contact-us";
+@import "./_home";
+@import "./_navigation";
+@import "./_products";
+@import "./_services";
+@import "./_about-us";
+@import "./footer";
+@import "./_subscribe";
+@import "./home-jumbotron";
+@import './home-service-card';
+@import './slick-slider/slick_arrow';
+@import './slick-slider/slick_dots';
+@import './testimonialscard';
+@import './client_section.scss';
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 500;
+  background-color: $background;
+}
+
+.page-view-title{
+    text-align: center;
+    padding-bottom: 30px;
+}
+.page-jumbotron {
+  background-image: url('../img/section-jumotron-2.jpg');
+  background-attachment: fixed;
+  object-fit:cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+ }
+
+ .section-title {
+  text-align: center;
+  padding-bottom: 30px;
+  p{
+    font-size: 1.2rem;
+  }
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  // color: #213b52;
+}
+
+.section-title h2::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  left: calc(50% - 60px);
+}
+
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #47b2e4;
+  bottom: 0;
+  left: calc(50% - 20px);
+}
+
+.section-title p {
+  margin-bottom: 0;
+}
+

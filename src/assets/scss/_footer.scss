@@ -1,0 +1,131 @@
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+#footer {
+    color: #b4aca8;
+    font-size: 14px;
+  }
+  #footer .footer-top {
+    padding: 60px 0 30px 0;
+    background:$footer-top-background;
+  }
+
+  #footer .footer-top .footer-contact {
+    margin-bottom: 30px;
+  }
+  
+  #footer .footer-top .footer-contact h3 {
+    font-size: 28px;
+    margin: 0 0 10px 0;
+    padding: 2px 0 2px 0;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  #footer .footer-top p {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 0;
+    // font-family: "Muli", sans-serif;
+    color: #b4aca8;
+  }
+  
+  #footer .footer-top h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    padding-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  #footer .footer-top .footer-links {
+    margin-bottom: 30px;
+  }
+  
+  #footer .footer-top .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #footer .footer-top .footer-links ul i {
+    padding-right: 2px;
+    color: #fd6f41;
+    font-size: 18px;
+    line-height: 1;
+  }
+  
+  #footer .footer-top .footer-links ul li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  #footer .footer-top .footer-links ul li:first-child {
+    padding-top: 0;
+  }
+  
+  #footer .footer-top .footer-links ul a {
+    color: #b4aca8;
+    transition: 0.3s;
+    font-size: 16px;
+    display: inline-block;
+    line-height: 1;
+  }
+  
+  #footer .footer-top .footer-links ul a:hover {
+    text-decoration: none;
+    color: #fd6f41;
+  }
+
+  #footer .footer-bottom {
+    background:$footer-bottom-background;
+  }
+  
+  
+  #footer .credits {
+    padding-top: 5px;
+    font-size: 16px;
+    color: #b4aca8;
+  }
+  #footer .copyright {
+    padding-top: 5px;
+    font-size: 16px;
+    color: #b4aca8;
+  }
+  
+  #footer .social-links a {
+    font-size: 20px;
+    display: inline-block;
+    background: #1d262f;
+    color: #fff;
+    line-height: 1;
+    padding: 8px 0;
+    margin-right: 4px;
+    border-radius: 50%;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
+  }
+  
+  #footer .social-links a:hover {
+    background: #fff;
+    color: #1d262f;
+    text-decoration: none;
+  }
+  
+
+/*--------------------------------------------------------------
+                         MEDIA QUERIES CSS 
+--------------------------------------------------------------*/
+
+@media only screen and (max-width: 830px) {
+  #footer ul li a{
+    text-align: center;
+  }
+}
