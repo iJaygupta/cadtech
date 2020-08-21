@@ -27,12 +27,25 @@ const HEADER_LIST = [
     id: 7,
     name: "Contact Us",
     link: "/contact-us"
+  },
+  {
+    id: 7,
+    name: "Register",
+    link: "/register"
+  },
+  {
+    id: 7,
+    name: "Login",
+    link: "/login"
+
   }
 ];
 
 const Header = () => {
   let [navClass, setNavClass] = useState(false);
   let [menuClass, setMenuClass] = useState(false);
+  let [isAuthModal, setIsAuthModal] = useState(false);
+
 
   const closeMobileMenu = () => setNavClass(false);
 
@@ -47,6 +60,16 @@ const Header = () => {
       document.body.classList.remove("header-nav-open");
     }
   };
+
+  const showModal = () => {
+    setIsAuthModal(true);
+  };
+
+  const hideModal = () => {
+    setIsAuthModal(false);
+  };
+
+
   return (
     <>
       <div className="header-nav-wrapper">

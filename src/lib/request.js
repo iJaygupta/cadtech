@@ -58,8 +58,6 @@ const self = {
         })
             .then(function (response) {
                 self.reset();
-
-                //this if condition has been added to logout on behalf account if the connection does not exit at the time of api hit
                 if (authenticate) {
                     if (response.data.code === "CEC4007") {
 
@@ -68,27 +66,12 @@ const self = {
                             data: true
                         });
                     }
-                    // commented for guest user
-                    // if (["CEC4003"].indexOf(response.data.code) != -1) {
-                    // 	if (self.handleApiError()) {
-                    // 		dispatch({
-                    // 			type: 'logout',
-                    // 			error: false,
-                    // 			msg: "Request not fulfilled " + response.data.code,
-                    // 			isAuthenticated: auth.isAuthenticated()
-                    // 		});
-                    // 	}
-                    // }
                 }
-
                 callback(response);
             })
             .catch(function (error) {
-                //if (self.handleApiError()) {
-                // dispatch(common.removeNotification());
-                // dispatch(common.notify("Something went wrong. Please try again later.", 'error'));
-                //}
-                console.error("API LIB ERROR : ", error);
+                console.error(error);
+                callback(error.response);
             });
     },
     sendExtRequest: function (url, data, callback) {
