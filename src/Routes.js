@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import ContactView from "./views/ContactView";
 import AboutUsView from "./views/AboutUsView";
-import ServiceView from "./views/ServiceView";
+import CourseView from "./views/CourseView";
 // import ProductView from "./views/ProductView";
 import BlogView from "./views/BlogView";
 import NumberPlate from "./views/products/NumberPlate";
@@ -16,7 +16,7 @@ const Routes = () => {
       <Route exact path="/home" component={Home} />
       <Route exact path="/about-us" component={AboutUsView} />
       <Route exact path="/contact-us" component={ContactView} />
-      <Route exact path="/services" component={ServiceView} />
+      <Route exact path="/courses" component={CourseView} />
       <Route exact path="/number-plate-recognition" component={NumberPlate} />
       <Route exact path="/studio-light" component={StudioLight} />
       <Route exact path="/blogs" component={BlogView} />

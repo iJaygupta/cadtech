@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import logo from "../assets/img/logo.svg";
+// import logo from "../assets/img/cadtech.jpg";
 import { NavLink, Link } from "react-router-dom";
 
 const HEADER_LIST = [
@@ -10,32 +10,22 @@ const HEADER_LIST = [
   },
   {
     id: 2,
-    name: "About",
-    link: "/about-us"
+    name: "Courses",
+    link: "/courses"
   },
   {
     id: 3,
-    name: "Npr",
-    link: "/number-plate-recognition"
-  },
-  {
-    id: 4,
-    name: "StudioLight",
-    link: "/studio-light"
-  },
-  {
-    id: 5,
-    name: "Courses",
+    name: "Services",
     link: "/services"
   },
   {
-    id: 6,
-    name: "Blogs",
-    link: "/blogs"
+    id: 4,
+    name: "About Us",
+    link: "/about-us"
   },
   {
     id: 7,
-    name: "Contact",
+    name: "Contact Us",
     link: "/contact-us"
   }
 ];
@@ -63,7 +53,7 @@ const Header = () => {
         <div className="header-bar"></div>
         <div className="header-navbar">
           <div className="header-image">
-            {/* <img src={logo} alt="" /> */}
+            {/* <img src={"../assets/img/cadtech.jpg"} alt="" /> */}
             LOGO
           </div>
           <div
