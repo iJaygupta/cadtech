@@ -181,7 +181,7 @@
     // }
   
     .header-navbar li .header-list-name {
-      font-size: calc($nav-fontSize + 2px);
+      font-size: $nav-fontSize;
     }
   
     // .header-nav-item {
@@ -204,4 +204,3 @@
       margin-right: 15px;
     }
   }
-  
