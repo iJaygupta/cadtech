@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, Button, Alert } from 'reactstrap';
+import { Container, CardImg, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, Button, Alert } from 'reactstrap';
 import { register } from "../../actions/authAction";
+import './Register.scss'
 
 const Register = (props) => {
 
@@ -32,7 +33,84 @@ const Register = (props) => {
     };
 
     return (
-        <Container className="mt-2">
+        <Container className="mt-5 register">
+
+<Row>
+                <Col md="3" className="register-left">
+                    <CardImg  width="100%" src="https://image.ibb.co/n7oTvU/logo_white.png" alt="Card image cap"/>
+                    <h3>Welcome</h3>
+                        <p>You are 30 seconds away from earning your own money!</p>
+                        <input type="submit" name="" value="Login"/><br/>
+                </Col>
+                <Col md="9" className="register-right">
+                    <Form className="form-signin">
+                        <h3 className="text-uppercase text-center font-weight-bold card-title mt-5">Register</h3>
+                        <Row form className="row register-form">
+                            <Col md={6}>
+                            <FormGroup className="form-label-group">
+                                <Label for="firstname">First Name *</Label>
+                                <Input className="form-control" type="text" id="firstname" placeholder="First Name *" />
+                            </FormGroup>
+                            <FormGroup className="form-label-group">
+                                <Label for="lastname">Last Name *</Label>
+                                <Input className="form-control" type="text" id="lastname" placeholder="last name"  />
+                            </FormGroup>
+                            <FormGroup className="form-label-group">
+                                <Label for="password">Password *</Label>
+                                <Input className="form-control" type="password"  id="password" placeholder="password"  />
+                            </FormGroup>
+                            <FormGroup className="form-label-group">
+                                <Label for="cpassword">Confirm Password *</Label>
+                                <Input className="form-control" type="password"  id="confirm password" placeholder="confirm password"/>
+                            </FormGroup>
+                                <Row form className="maxl ml-4 form-label-group">
+                                    <Col md={3}>
+                                        <FormGroup >
+                                            <Label className="radio inline" for="gender">
+                                                <Input type="radio" name="gender" value="male" checked/>
+                                                Male
+                                            </Label>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={3}>
+                                        <FormGroup>
+                                            <Label className="radio inline" for="gender">
+                                                <Input type="radio" name="gender" value="female"/>
+                                                Female
+                                            </Label>
+                                    </FormGroup>
+                                    </Col>                                
+                                </Row>
+                            </Col>
+                            <Col md={6}>
+                            <FormGroup className="form-label-group">
+                                <Label for="email">Your Email *</Label>
+                                <Input className="form-control" type="email" id="lastname" placeholder="Email"  />
+                            </FormGroup>
+                            <FormGroup className="form-label-group">
+                                <Label for="mobile">Your Mobile No *</Label>
+                                <Input className="form-control" type="text" id="mobile" placeholder="First Name" />
+                            </FormGroup>
+                            <FormGroup className="form-label-group">
+                                <Label for="sequrity"></Label>
+                                <Input className="" type="select" name="select" id="sequrity">
+                                    <option className="hidden" selected disabled>Please select your Sequrity Question </option>
+                                    <option>What is your Birthdate? </option>
+                                    <option>What is Your old Phone Number </option>
+                                    <option>What is your Pet Name?</option>
+                                </Input>
+                            </FormGroup>
+                            <FormGroup className="form-label-group">
+                                <Label for="answer">Enter Your Answer *</Label>
+                                <Input className="form-control" type="text"  id="answer" placeholder="Your Answer"  />
+                            </FormGroup>
+                                <Button className="btnRegister py-2 my-4 btn btn-lg btn-primary btn-block text-uppercase btn btn-primary btn-block" color="primary" size="sm" block>Register</Button>
+                            </Col>
+                        </Row>
+                    </Form>
+                </Col>
+                </Row>
+{/* 
             <Row>
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
                     <Card>
@@ -66,7 +144,7 @@ const Register = (props) => {
                         </CardBody>
                     </Card>
                 </Col>
-            </Row>
+            </Row> */}
         </Container>
     );
 };
