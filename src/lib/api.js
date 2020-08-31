@@ -8,5 +8,7 @@ export default {
     addCourse: `/api/v1/course`,
     updateCourse: `/api/v1/course`,
     deleteCourse: `/api/v1/course`,
+    getLookUpData: `/api/v1/enquiry/lookup`,
+    getTeamMember: `/api/v1/enquiry/team`,
 
 }
