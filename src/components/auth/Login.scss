@@ -1,0 +1,213 @@
+
+body {
+	background: white;
+	// background: linear-gradient(to right, #0062E6, #33AEFF);
+  }
+  .login{
+	  background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+	  margin-top: 3%;
+	  padding: 3%;
+  }
+  .login-left{
+	  text-align: center;
+	  color: #fff;
+	  margin-top: 2%;
+  }
+  .login-left input{
+	  border: none;
+	  border-radius: 1.5rem;
+	  padding: 2%;
+	  width: 60%;
+	  background: #f8f9fa;
+	  font-weight: bold;
+	  color: #383d41;
+	  margin-top: 10%;
+	  margin-bottom: 3%;
+	  cursor: pointer;
+  }
+  .login-right{
+	  background: #f8f9fa;
+	  border-top-left-radius: 10% 50%;
+	  border-bottom-left-radius: 10% 50%;
+  }
+  .login-left img{
+	  margin-top: 15%;
+	  margin-bottom: 5%;
+	  width: 25%;
+	  -webkit-animation: mover 2s infinite  alternate;
+	  animation: mover 1s infinite  alternate;
+  }
+  @-webkit-keyframes mover {
+	  0% { transform: translateY(0); }
+	  100% { transform: translateY(-20px); }
+  }
+  @keyframes mover {
+	  0% { transform: translateY(0); }
+	  100% { transform: translateY(-20px); }
+  }
+  .login-left p{
+	  font-weight: lighter;
+	  padding: 12%;
+	  margin-top: -9%;
+  }
+  .login .login-form{
+	padding: 10%;   
+  }
+  .btnlogin{
+	  float: right;
+	  margin-top: 10%;
+	  border: none;
+	  border-radius: 1.5rem;
+	  padding: 2%;
+	  background: #0062cc;
+	  color: #fff;
+	  font-weight: 600;
+	  width: 50%;
+	  cursor: pointer;
+  }
+  .login{
+	  width: 100px;
+	  color: #0062cc;
+	  border: 2px solid #0062cc;
+	  border-top-left-radius: 1.5rem;
+	  border-bottom-left-radius: 1.5rem;
+  }
+  .login-heading{
+	  text-align: center;
+	  margin-top: 8%;
+	  margin-bottom: -15%;
+	  color: #495057;
+  }
+  
+  
+  :root {
+	--input-padding-x: 1.5rem;
+	--input-padding-y: .75rem;
+  }
+  
+  body {
+	background: #007bff;
+	background: linear-gradient(to right, #0062E6, #33AEFF);
+  }
+  .login-bg{
+	  width: 100%;
+	  height: 100%;
+		  
+  }
+  .custom-control{
+	  font-size: medium;
+	  margin-left: 1rem;
+  }
+  .card-body{
+	  width: -webkit-fill-available;
+  }
+  
+  .card.card-signin {
+	border: 0;
+	border-radius: 1rem;
+	box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-signin .card-title {
+	margin-bottom: 2rem;
+	font-weight: 300;
+	font-size: 1.5rem;
+  }
+  
+  .card-signin .card-body {
+	padding: 2rem;
+  }
+  
+  .form-signin {
+	width: 100%;
+  }
+  
+  .form-signin .btn {
+	font-size: 100%;
+	width: 50%;
+	border-radius: 5rem;
+	letter-spacing: .1rem;
+	font-weight: bold;
+	padding: 1rem;
+	transition: all 0.2s;
+  }
+  
+  .form-label-group {
+	position: relative;
+	margin-bottom: 1rem;
+  }
+  
+  .form-label-group input {
+	height: auto;
+	border-radius: 2rem;
+  }
+  .form-label-group select{
+	  height: 3.1rem;
+	  border-radius: 2rem;
+	}
+  
+  .form-label-group>input,
+  .form-label-group>label {
+	padding: var(--input-padding-y) var(--input-padding-x);
+  }
+  
+  .form-label-group>label {
+	position: absolute;
+  }
+  
+  .form-label-group input::-webkit-input-placeholder {
+	color: transparent;
+  }
+  
+  .form-label-group input:-ms-input-placeholder {
+	color: transparent;
+  }
+  
+  .form-label-group input::-ms-input-placeholder {
+	color: transparent;
+  }
+  
+  .form-label-group input::-moz-placeholder {
+	color: transparent;
+  }
+  
+  .form-label-group input::placeholder {
+	color: transparent;
+  }
+  
+  .form-label-group input:not(:placeholder-shown) {
+	padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (3 / 2));
+	padding-bottom: calc(var(--input-padding-y) / 3);
+  }
+  
+  .form-label-group input:not(:placeholder-shown)~label {
+	padding-top: calc(var(--input-padding-y) / 3);
+	padding-bottom: calc(var(--input-padding-y) / 3);
+	font-size: 12px;
+	color: #777;
+  }
+  
+  /* Fallback for Edge
+  -------------------------------------------------- */
+  
+  @supports (-ms-ime-align: auto) {
+	.form-label-group>label {
+	  display: none;
+	}
+	.form-label-group input::-ms-input-placeholder {
+	  color: #777;
+	}
+  }
+  
+  /* Fallback for IE
+  -------------------------------------------------- */
+  
+  @media all and (-ms-high-contrast: none),
+  (-ms-high-contrast: active) {
+	.form-label-group>label {
+	  display: none;
+	}
+	.form-label-group input:-ms-input-placeholder {
+	  color: #777;
+	}
+  }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { login } from "../../actions/authAction";
-import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, Button, Alert } from 'reactstrap';
-
+import { Container, Row, CardImg , Col, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, Button, Alert } from 'reactstrap';
+import './Login.scss'
 const Login = (props) => {
 
     const [email, setEmail] = useState('');
@@ -29,29 +29,66 @@ const Login = (props) => {
     };
 
     return (
-        <Container className="mt-5">
-            <Row>
+        <Container className="mt-5 login">
+                <Row>
+                <Col md="6" className="login-left">
+                    <CardImg  width="100%" src="https://image.ibb.co/n7oTvU/logo_white.png" alt="Card image cap"/>
+                    <h3>Welcome</h3>
+                        <p>You are 30 seconds away from earning your own money!</p>
+                        <input type="submit" name="" value="login Now"/><br/>
+                </Col>
+                <Col md="6" className="login-right">                    
+                    <Form className="form-signin login-form"> 
+                         <h3 className="text-uppercase text-center font-weight-bold mb-4">Login</h3>
+
+                            <FormGroup className="form-label-group py-2">
+                                <Label for="exampleEmail">Email</Label>
+                                <Input className="form-control" type="email" value={email} id="email" placeholder="Email" onChange={handleChange} />
+                            </FormGroup>
+                            <FormGroup className="form-label-group py-2">
+                                <Label for="examplePassword">Password</Label>
+                                <Input className="form-control" type="password" value={password} id="password" placeholder="Password" onChange={handleChange} />
+                            </FormGroup>
+                            <FormGroup check className="ml-2 my-3">
+                                <Label check>
+                                <Input type="checkbox" id="checkbox2" />{' '}
+                                Remember password
+                                </Label>
+                            </FormGroup>
+                            <Button className="btnlogin py-2 my-4 btn btn-lg btn-primary btn-block text-uppercase" color="primary" block>Login</Button>                            
+                    </Form>
+                </Col>
+                </Row>
+{/* login strat */}
+            {/* <Row>
                 <Col sm="12" md={{ size: 6, offset: 3 }}>
-                    <Card>
+                    
+                    <Card className="login-bg card-signin">
                         <CardBody>
-                            <div className="d-flex justify-content-center mb-2">
+                            <div className="d-flex justify-content-center mt-3 mb-4">
                                 <div className="d-flex align-items-center">
-                                    <span className="text-primary mr-2">
+                                    <span className="h4 mr-2">
                                         <i className="fas fa-lock" />
                                     </span>
                                 </div>
-                                <h2 className="text-uppercase text-primary font-weight-bold mb-0">Login Test</h2>
-                            </div>
-                            <Form onSubmit={handleSubmit}>
-                                <FormGroup>
+                                <CardTitle className="text-uppercase font-weight-bold h4 card-title mb-0">Login</CardTitle>
+                                </div>
+                                <Form className="form-signin" onSubmit={handleSubmit}>
+                                <FormGroup className="form-label-group">
                                     <Label for="exampleEmail">Email</Label>
-                                    <Input type="email" value={email} id="email" placeholder="Email" onChange={handleChange} />
+                                    <Input className="form-control" type="email" value={email} id="email" placeholder="Email" onChange={handleChange} />
                                 </FormGroup>
-                                <FormGroup>
+                                <FormGroup className="form-label-group">
                                     <Label for="examplePassword">Password</Label>
-                                    <Input type="password" value={password} id="password" placeholder="Password" onChange={handleChange} />
+                                    <Input className="form-control" type="password" value={password} id="password" placeholder="Password" onChange={handleChange} />
                                 </FormGroup>
-                                <Button color="primary" block>Login</Button>
+                                <FormGroup check className="ml-2 my-3">
+                                    <Label check>
+                                    <Input type="checkbox" id="checkbox2" />{' '}
+                                    Remember password
+                                    </Label>
+                                </FormGroup>
+                                <Button className="btn btn-lg btn-primary btn-block text-uppercase" color="primary" block>Login</Button>
                             </Form>
                             {authError && <Alert className="mt-3" color="danger">
                                 {authError}
@@ -59,7 +96,7 @@ const Login = (props) => {
                         </CardBody>
                     </Card>
                 </Col>
-            </Row>
+            </Row> */}
         </Container>
     );
 };
