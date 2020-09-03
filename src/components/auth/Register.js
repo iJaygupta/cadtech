@@ -8,18 +8,16 @@ export default class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // name ="",
-            // setName= "",
-            // email= "",
-            // setEmail="",
-            // password="",
-            // setPassword="",
-            // authError="",
-            // setAuthError="",
-            name: "",
+            firstName: "",
+            lastName: "",
             email: "",
             password: "",
+            confirmPassword:"",
+            mobile:"",
+            gender:"",
+            education:"",
             authError: "",
+            address:"",
             errorParam: {
                 name: false,
                 email: false,
