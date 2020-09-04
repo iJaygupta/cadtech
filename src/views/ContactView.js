@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PageJumbotron from '../utils/PageJumbotron'
 import { Link } from 'react-router-dom'
 import HeadingTitle from '../utils/HeadingTitle';
-import { contactUs } from '../actions/contactUsAction';
+import { contactUs } from '../actions/enquiryAction';
 
 const SOCIAL_LINK_LIST = [
   { id: 1, name: 'twitter', classname: 'fab fa-twitter', link: '' },

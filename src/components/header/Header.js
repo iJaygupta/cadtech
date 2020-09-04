@@ -38,6 +38,12 @@ const HEADER_LIST = [
     name: "Login",
     link: "/login"
 
+  },
+  {
+    id: 8,
+    name: "Profile",
+    link: "/profile"
+
   }
 ];
 
