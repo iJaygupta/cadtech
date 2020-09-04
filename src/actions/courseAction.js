@@ -5,7 +5,9 @@ import apiPaths from '../lib/api';
 
 export const getCourses = (callback) => {
     return api.setMethod('GET').sendRequest(apiPaths.getCourses, null, false, function (response) {
-        callback(response.data);
+        if (response) {
+            callback(response.data);
+        }
     })
 };
 

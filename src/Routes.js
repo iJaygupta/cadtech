@@ -9,6 +9,7 @@ import BlogView from "./views/BlogView";
 import NumberPlate from "./views/products/NumberPlate";
 import StudioLight from "./views/products/StudioLight";
 import Home from "./views/home/Home";
+import Profile from "./components/profile/Profile";
 import DisplayMsg from "./views/NotFound";
 
 
@@ -25,6 +26,7 @@ const Routes = () => {
       <Route exact path="/number-plate-recognition" component={NumberPlate} />
       <Route exact path="/studio-light" component={StudioLight} />
       <Route exact path="/blogs" component={BlogView} />
+      <Route exact path="/profile" component={Profile} />
       <Route path="*" component={DisplayMsg} />
     </Switch>
   );

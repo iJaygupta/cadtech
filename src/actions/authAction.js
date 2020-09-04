@@ -9,6 +9,8 @@ export const register = (data, callback) => {
 
 export const login = (data, callback) => {
     return api.setMethod('POST').sendRequest(apiPaths.logIn, data, false, function (response) {
-        callback(response.data);
+        if (response) {
+            callback(response.data);
+        }
     })
 };
