@@ -15,7 +15,7 @@ export default class CourseView extends Component {
 
     componentDidMount() {
         getCourses((response) => {
-            if (response.status = "OK") {
+            if (response && response.status == "OK") {
                 this.setState({ courses: response.data })
             }
         })

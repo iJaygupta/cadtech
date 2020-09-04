@@ -6,3 +6,11 @@ export const contactUs = (data, callback) => {
         callback(response.data);
     })
 };
+
+export const getTeamMember = (callback) => {
+    return api.setMethod('GET').sendRequest(apiPaths.getTeamMember, null, false, function (response) {
+        if (response) {
+            callback(response.data);
+        }
+    })
+};
