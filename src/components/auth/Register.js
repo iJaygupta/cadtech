@@ -33,7 +33,7 @@ const Register = (props) => {
     };
 
     return (
-        <Container className="mt-5 register">
+        <Container className="my-5 register">
 
 <Row>
                 <Col md="3" className="register-left">

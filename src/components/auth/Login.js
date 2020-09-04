@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { login } from "../../actions/authAction";
-import { Container, Row, CardImg , Col, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, Button, Alert } from 'reactstrap';
+import { Container, Row, CardImg , Col, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
 import './Login.scss'
 const Login = (props) => {
 
@@ -29,7 +29,7 @@ const Login = (props) => {
     };
 
     return (
-        <Container className="mt-5 login">
+        <Container className="my-5 login">
                 <Row>
                 <Col md="6" className="login-left">
                     <CardImg  width="100%" src="https://image.ibb.co/n7oTvU/logo_white.png" alt="Card image cap"/>
