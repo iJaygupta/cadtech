@@ -116,7 +116,7 @@ export default class ContactView extends Component {
                     <div className="col-md-6">
                       <div className="info-box mt-4">
                         <i class="fas fa-envelope-square"></i>
-                        <h3>Email Us</h3>
+                        <h3>Email </h3>
                         <p>info@cadtech.in<br />cadtechprofessionals@gmail.com</p>
                       </div>
                     </div>
@@ -174,7 +174,7 @@ export default class ContactView extends Component {
             <div className="container">
               <HeadingTitle
                 title={'Other Way To Connect'}
-                description={'Magnam dolores commodi suscipit. Necessitatibus eius consequatur'}
+                description={'To Have More Information Follow Us On ...'}
                 titleColor={'#213b52'}
               />
 
