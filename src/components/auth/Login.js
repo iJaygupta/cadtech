@@ -46,7 +46,7 @@ export default class Login extends Component {
             this.submitData();
         } else {
             this.setAuthError("Validation Failed");
-            console.log("Validation Failed")
+            console.log("Please Provide Correct Info.")
         }
     };
 
@@ -76,7 +76,6 @@ export default class Login extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <Container className="mt-5 login">
                 <Row>

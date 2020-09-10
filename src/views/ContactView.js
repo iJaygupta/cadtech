@@ -54,7 +54,7 @@ export default class ContactView extends Component {
       this.submitData();
     } else {
       this.setAuthError("Validation Failed");
-      console.log("Validation Failed")
+      console.log("Please Provide Correct Info. ")
     }
   };
 
@@ -100,7 +100,7 @@ export default class ContactView extends Component {
           </div> */}
               <HeadingTitle
                 title={'Contact Us'}
-                description={'Magnam dolores commodi suscipit. Necessitatibus eius consequatur'}
+                description={'Be Ready for What Comes Next with Cadtech!! ContactUs'}
                 titleColor={'#213b52'}
               />
               <div className="row">

@@ -11,7 +11,7 @@ const Subscribe = () => {
               <p>Stay up to date with the latest news from the NeuronLabsAi community</p> */}
                <HeadingTitle 
                    title={'Join Our Newsletter'}
-                   description ={'Stay up to date with the latest news from the NeuronLabsAi community'}
+                   description ={'Stay up to date with the latest news from the Cadtech community'}
                    titleColor ={'#213b52'}
             />
                <form className="news-letter-form">

@@ -30,7 +30,7 @@ export default class CourseView extends Component {
                         <HeadingTitle
                             title={"Courses"}
                             description={
-                                "Magnam dolores commodi suscipit. Necessitatibus eius consequatur"
+                                "Detail significant learning experiences and benefits students can expect"
                             }
                             titleColor={"#213b52"}
                         />

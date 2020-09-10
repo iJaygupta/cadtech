@@ -4,7 +4,9 @@ import User from "../assets/img/jay.jpg";
 import TeamCard from "../utils/TeamCard";
 import CarouselUtil from "../utils/CarouselUtil";
 import HeadingTitle from "../utils/HeadingTitle";
-import Cardimage from '../assets//img/about-plan.jpg'
+import Cardimage1 from '../assets//img/john.jpg'
+import Cardimage2 from '../assets//img/kelly.jpg'
+import Cardimage3 from '../assets//img/david.jpg'
 import { getLookUpData } from '../actions/lookUpAction';
 import { getTeamMember } from '../actions/enquiryAction';
 
@@ -60,14 +62,13 @@ export default class AboutUsView extends Component {
 
   }
   render() {
-    console.log(this.state.aboutUs)
     return (
       <div className="about-us-view">
         <PageJumbotron headerTitle={"About Us"} />
         <section id="about-comp" className="about section-bg">
           <div className="container">
             <HeadingTitle
-              title={"About Company"}
+              title={"About cadtech"}
               description={
                 this.state.aboutUs.bio
               }
@@ -146,7 +147,7 @@ export default class AboutUsView extends Component {
             <HeadingTitle
               title={"Our Mission & Vision"}
               description={
-                "Magnam dolores commodi suscipit. Necessitatibus eius consequatur"
+                "Practice principles for excellence in teaching and learning"
               }
               titleColor={"#fff"}
             />
@@ -154,12 +155,12 @@ export default class AboutUsView extends Component {
               <div className="col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <div className="about-col">
                   <div className="img">
-                    <img src={Cardimage} alt="" className="img-fluid" />
+                    <img src={Cardimage1} alt="" className="img-fluid" />
                     <div className="icon"><i className="fas fa-tachometer-alt"></i></div>
                   </div>
                   <h2 className="title"><a href="#">Our Mission</a></h2>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Our dynamic team serves the college community by providing training, research, and flexible support services. Through creative problem solving, collaboration, and reflection we provide an environment for growth in teaching and learning in an effort to best support our students, faculty and staff.
             </p>
                 </div>
               </div>
@@ -167,12 +168,12 @@ export default class AboutUsView extends Component {
               <div className="col-md-4" data-aos="fade-up" data-aos-delay="200">
                 <div className="about-col">
                   <div className="img">
-                    <img src={Cardimage} alt="" className="img-fluid" />
+                    <img src={Cardimage3} alt="" className="img-fluid" />
                     <div className="icon"><i className="far fa-list-alt"></i></div>
                   </div>
                   <h2 className="title"><a href="#">Our Plan</a></h2>
                   <p>
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    It’s important to assess how students will be applying the information you’re teaching them. What are their various backgrounds, personal and professional goals? How can you make your course relevant to them and useful in fulfilling their goals? Think of scenarios, analogies and stories that will help them build a bridge between the content of your course and their real lives.
             </p>
                 </div>
               </div>
@@ -180,12 +181,12 @@ export default class AboutUsView extends Component {
               <div className="col-md-4" data-aos="fade-up" data-aos-delay="300">
                 <div className="about-col">
                   <div className="img">
-                    <img src={Cardimage} alt="" className="img-fluid" />
+                    <img src={Cardimage2} alt="" className="img-fluid" />
                     <div className="icon"><i className="far fa-eye"></i></div>
                   </div>
                   <h2 className="title"><a href="#">Our Vision</a></h2>
                   <p>
-                    Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
+                    When teachers can identify the values and beliefs at the centre of their practice, they have a frame of reference that helps them to evaluate their current practice. Mindsets change when teachers actively adjust their practice to ensure it is aligned with their core values and beliefs.
             </p>
                 </div>
               </div>
@@ -199,7 +200,7 @@ export default class AboutUsView extends Component {
             <HeadingTitle
               title={"Our Team"}
               description={
-                "Magnam dolores commodi suscipit. Necessitatibus eius consequatur"
+                "Evaluate the impact of our teaching"
               }
               titleColor={"#213b52"}
             />

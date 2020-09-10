@@ -53,7 +53,7 @@ export default class Register extends Component {
             this.submitData();
         } else {
             this.setAuthError("Validation Failed");
-            console.log("Validation Failed")
+            console.log("Please Provide Correct Info.")
         }
     };
 
