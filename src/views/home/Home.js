@@ -2,7 +2,10 @@ import React from "react";
 import Subscribe from '../../components/footer/Subscribe';
 import HomeJumbotron from "../../utils/HomeJumbotron";
 import HomeServiceCard from "../../utils/HomeServiceCard";
-import ServiceImage1 from '../../assets//img/section-jumotron-2.jpg';
+import ServiceImage1 from '../../assets//img/avil.jpg';
+import ServiceImage2 from '../../assets//img/marvin.jpg';
+import ServiceImage3 from '../../assets//img/thouught.jpg';
+import ServiceImage4 from '../../assets//img/shoes.jpg';
 import HeaderSlider from "../../components/headerJumbotron/HeaderSlider";
 import { Link } from 'react-router-dom';
 import ProductCardHeading from "../../utils/ProductCardHeading";
@@ -45,11 +48,12 @@ const Home = () => {
       <section id="HeSeSn1">
         <div id="HProd1">
           <div className="container-fluid">
-            <ProductCardHeading name={'Number Plate Recognition'} description={'Provide Awsome Images like Studios'} color={'#111f27'} />
+            <ProductCardHeading name={'Your Bridge to Better'}
+              description={'Learn new skills, earn credit toward a degree, or advance your career at your own pace.'} color={'#111f27'} />
             <div className="row">
               <div className="col-md-6 Hcard-img">
                 <div className="HImg">
-                  <img src={ServiceImage1} alt="" className="img-fluid" />
+                  <img src={ServiceImage2} alt="" className="img-fluid" />
                 </div>
               </div>
               <div className="col-md-6 Hcard-img">
@@ -59,22 +63,22 @@ const Home = () => {
               </div>
             </div>
             <div className="btn-cntainer">
-              <Link className="Know-more-btn" to="/contact-us" style={{ color: '#111f27' }}>Know More</Link>
+              <Link className="Know-more-btn " to="/contact-us" style={{ color: '#111f27' }}>Know More</Link>
             </div>
           </div>
         </div>
         <div id="HProd2">
           <div className="container-fluid">
-            <ProductCardHeading name={'Studio Photo'} description={'Provide Awsome Images like Studios'} />
+            <ProductCardHeading name={'You can learn anything.'} description={'Differentiate your classroom and engage every student.'} />
             <div className="row">
               <div className="col-md-6 Hcard-img">
                 <div className="HImg">
-                  <img src={ServiceImage1} alt="" className="img-fluid" />
+                  <img src={ServiceImage3} alt="" className="img-fluid" />
                 </div>
               </div>
               <div className="col-md-6 Hcard-img">
                 <div className="HImg">
-                  <img src={ServiceImage1} alt="" className="img-fluid" />
+                  <img src={ServiceImage4} alt="" className="img-fluid" />
                 </div>
               </div>
             </div>
@@ -87,7 +91,7 @@ const Home = () => {
 
       <section id="Hm-testimonials">
         <div className="container">
-          <ProductCardHeading name={'Testimonials'} description={'Provide Awsome Images like Studios'} color={'#111f27'} />
+          <ProductCardHeading name={'TeamMembers'} description={'Build your Career here'} color={'#111f27'} />
           {/* <div className="row"> */}
           <SlickSliderWrapper>
             {
@@ -106,7 +110,7 @@ const Home = () => {
 
       <section id="home-cont">
         <div className="container-fluid">
-          <h2>Find out how conversational AI can make a difference in your business</h2>
+          <h2>Find out how Cadtech can make your Career</h2>
           <Link className="btn-contact" to="/contact-us">Contact</Link>
         </div>
       </section>
