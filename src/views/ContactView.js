@@ -19,14 +19,14 @@ export default class ContactView extends Component {
       email: "",
       subject: "",
       message: "",
-      isSent:"",
+      isSent: "",
       authError: "",
       errorParam: {
         yourName: false,
         subject: false,
         email: false,
         message: false,
-        isSent:false,
+        isSent: false,
       }
     }
   }
@@ -35,57 +35,57 @@ export default class ContactView extends Component {
 
     const { name, value } = e.target;
     if (value == '') {
-        let errorParam = { ...this.state.errorParam };
-        errorParam[name] = true;
-        this.setState({ errorParam: errorParam })
+      let errorParam = { ...this.state.errorParam };
+      errorParam[name] = true;
+      this.setState({ errorParam: errorParam })
     } else {
-        this.setState({ [name]: value }, () => {
-            let errorParam = { ...this.state.errorParam };
-            errorParam[name] = false;
-            this.setState({ errorParam: errorParam })
-        })
+      this.setState({ [name]: value }, () => {
+        let errorParam = { ...this.state.errorParam };
+        errorParam[name] = false;
+        this.setState({ errorParam: errorParam })
+      })
     }
-};
+  };
 
-handleSubmit = (event) => {
-  event.preventDefault();
-  if (!this.validateData()) {
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (!this.validateData()) {
       console.log("Validation Success");
       this.submitData();
-  } else {
+    } else {
       this.setAuthError("Validation Failed");
       console.log("Validation Failed")
-  }
-};
+    }
+  };
 
-submitData = () => {
-  let { name, email, subject, message,isSent } = this.state;
-  contactUs({ name, email, subject, message ,isSent }, (response) => {
+  submitData = () => {
+    let { name, email, subject, message } = this.state;
+    contactUs({ name, email, subject, message }, (response) => {
       if (response && response.status == "OK") {
-          this.props.history.push("/home");
+        this.props.history.push("/home");
       } else {
-          this.setAuthError(response.message);
+        this.setAuthError(response.message);
       }
-  });
-}
-
-validateData = (event) => {
-  let errorParam = { ...this.state.errorParam }
-  let flag = false;
-  let contactData = this.state;
-  for (const key in contactData) {
-      if (contactData[key] == '' && key != "authError") {
-          errorParam[key] = true;
-          flag = true;
-      }
+    });
   }
-  this.setState({ errorParam: errorParam })
-  return flag;
-}
 
-setAuthError(message) {
-  this.setState({ authError: message })
-}
+  validateData = (event) => {
+    let errorParam = { ...this.state.errorParam }
+    let flag = false;
+    let contactData = this.state;
+    for (const key in contactData) {
+      if (contactData[key] == '' && key != "authError" && key != "isSent") {
+        errorParam[key] = true;
+        flag = true;
+      }
+    }
+    this.setState({ errorParam: errorParam })
+    return flag;
+  }
+
+  setAuthError(message) {
+    this.setState({ authError: message })
+  }
 
   render() {
     return (
@@ -131,40 +131,40 @@ setAuthError(message) {
                 </div>
                 <div className="col-lg-6">
                   <form className="contact-view-form">
-                  <div className="form-row">
-                    <div className="col-md-6 form-group">
-                    <label for="name">Your Name</label>
-                      <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" onChange={this.handleChange} required />
-                      <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['name'] ? "Name is required" : ""}</span>
+                    <div className="form-row">
+                      <div className="col-md-6 form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" onChange={this.handleChange} required />
+                        <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['name'] ? "Name is required" : ""}</span>
+
+                      </div>
+                      <div className="col-md-6 form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" className="form-control" name="email" id="email" placeholder="Your Email" onChange={this.handleChange} />
+                        <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['email'] ? "Email is required" : ""}</span>
+
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label for="subject">Your Subject</label>
+                      <input type="text" className="form-control" name="subject" id="subject" placeholder="Subject" onChange={this.handleChange} />
+                      <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['subject'] ? "Subject is required" : ""}</span>
 
                     </div>
-                    <div className="col-md-6 form-group">
-                    <label for="email">Your Email</label>
-                      <input type="email" className="form-control" name="email" id="email" placeholder="Your Email" onChange={this.handleChange} />
-                      <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['email'] ? "Email is required" : ""}</span>
+                    <div className="form-group">
+                      <label for="message">Your Message</label>
+                      <textarea className="form-control" name="message" rows="5" onChange={this.handleChange}></textarea>
+                      <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['message'] ? "Message is required" : ""}</span>
 
                     </div>
-                  </div>
-                  <div className="form-group">
-                  <label for="subject">Your Subject</label>
-                    <input type="text" className="form-control" name="subject" id="subject" placeholder="Subject" onChange={this.handleChange} />
-                    <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['subject'] ? "Subject is required" : ""}</span>
-
-                  </div>
-                  <div className="form-group">
-                  <label for="message">Your Message</label>
-                    <textarea className="form-control" name="message" rows="5" onChange={this.handleChange}></textarea>
-                    <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['message'] ? "Message is required" : ""}</span>
-
-                  </div>
-                  <div className="mb-3">
-                    {this.state.isSent ?
-                      <div className="sent-message">Your message has been sent. Thank you!</div> : ""
-                    }
-                  </div>
-                  <div className="btn-cntainer">
-                    <button type="submit" className="send-message" onClick={this.handleSubmit} >Send Message</button>
-                  </div>
+                    <div className="mb-3">
+                      {this.state.isSent ?
+                        <div className="sent-message">Your message has been sent. Thank you!</div> : ""
+                      }
+                    </div>
+                    <div className="btn-cntainer">
+                      <button type="submit" className="send-message" onClick={this.handleSubmit} >Send Message</button>
+                    </div>
                   </form>
                 </div>
               </div>

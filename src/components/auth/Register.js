@@ -79,6 +79,10 @@ export default class Register extends Component {
                 flag = true;
             }
         }
+        if (registerData['password'] != registerData['confirmPassword']) {
+            errorParam['confirmPassword'] = 1;
+            flag = true;
+        }
         this.setState({ errorParam: errorParam })
         return flag;
     }
@@ -130,7 +134,7 @@ export default class Register extends Component {
                                         <Input className="form-control" type="password" name="confirmPassword" placeholder="Confirm password"
                                             onChange={this.handleChange}
                                         />
-                                        <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['confirmPassword'] ? "Confirm password is required" : ""}</span>
+                                        <span style={{ "color": "red" }} className="errorMsg ml-3">{(this.state.errorParam['confirmPassword'] === true) ? "Confirm password is required" : (this.state.errorParam['confirmPassword'] === 1) ? "Enter same password as above" : ""}</span>
 
                                     </FormGroup>
                                     <Row form className="maxl ml-4 form-label-group">
