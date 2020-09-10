@@ -87,7 +87,7 @@ const Home = () => {
 
       <section id="Hm-testimonials">
         <div className="container">
-          <ProductCardHeading name={'Testimonials'} description={'Provide Awsome Images like Studios'} color={'#111f27'} />
+          <ProductCardHeading name={'TeamMembers'} description={'Build your Career here'} color={'#111f27'} />
           {/* <div className="row"> */}
           <SlickSliderWrapper>
             {
@@ -106,7 +106,7 @@ const Home = () => {
 
       <section id="home-cont">
         <div className="container-fluid">
-          <h2>Find out how conversational AI can make a difference in your business</h2>
+          <h2>Find out how Cadtech can make your Career</h2>
           <Link className="btn-contact" to="/contact-us">Contact</Link>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import React from 'react'
-import USER from '../assets/img/user.jpeg';
+import USER from '../assets/img/vatsal.jpg';
 const TestimonialsCard = (props) => {
     return (
         <div className="testi-item">
@@ -8,11 +8,9 @@ const TestimonialsCard = (props) => {
                    <img src={USER} alt="" className="img" />
                </div>
                <div className="testi-text">
-                   <h4>Mark Zuck <span>Software Developer</span></h4>
+                   <h4>Vatsal Sharma<span>Software Developer</span></h4>
                    <p>
-                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                   Enthusiasm is contagious. If you’re passionate about bath fizzies, tell us why! Let people know that ever since you learned how to make this fabulous product, your life hasn’t been the same. And how you want everyone to experience that too. 
 
                    </p>
                </div>
