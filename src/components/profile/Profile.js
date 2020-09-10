@@ -1,11 +1,59 @@
 import React, { Component } from 'react';
+import { getUserAccountDetails, updateUserAccountDetails } from "../../actions/profileAction";
+import { Input, Button } from 'reactstrap';
+
+import moment from 'moment';
 
 export default class Profile extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            userInfo: {},
+            editMode: false
+        }
+    }
+
+    handleChange = (e) => {
+        const { name, value } = e.target;
+        let userInfo = this.state.userInfo;
+        if (value == '') {
+            userInfo[name] = value;
+            this.setState({ userInfo: userInfo })
+        } else {
+            userInfo[name] = value;
+            this.setState({ userInfo: userInfo })
+        }
+    };
+
+    changeMode = () => {
+        if (this.state.editMode) {
+            this.saveProfile();
+        }
+        this.setState({ editMode: !this.state.editMode });
+    }
+
+    saveProfile() {
+        let { firstName, lastName, email, mobile } = this.state.userInfo
+        updateUserAccountDetails({ firstName, lastName, email, mobile }, (response) => {
+            console.log(response);
+            if (response && response.status == "OK") {
+            } else {
+            }
+        })
+    }
+
+    componentDidMount() {
+        getUserAccountDetails((response) => {
+            console.log(response);
+            if (response && response.status == "OK") {
+                this.setState({ userInfo: response.data })
+            } else {
+            }
+        })
     }
 
     render() {
+        console.log("this.state.userInfo.firstName", this.state.userInfo.firstName);
         return (
             <div className="container my-5 emp-profile profile">
                 <form className="form-profile">
@@ -20,16 +68,16 @@ export default class Profile extends Component {
                             </div>
                             <div className="profile-head">
                                 <h3 className="text-white">
-                                    Kshiti Ghelani
+                                    {`${this.state.userInfo.firstName ? this.state.userInfo.firstName : ''}  ${this.state.userInfo.lastName ? this.state.userInfo.lastName : ''}`}
                                 </h3>
                                 <p className="text-white profile-detail">Course : <span className="text-white">Web Developer and Designer</span></p>
-                                <p className="text-white profile-detail">Joining Date : <span className="text-white">12/08/2020</span></p>
+                                <p className="text-white profile-detail">Joining Date : <span className="text-white">{this.state.userInfo.createdAt ? moment(this.state.userInfo.createdAt).format('MM/DD/YYYY') : ''}</span></p>
                             </div>
                         </div>
                         <div className="col-md-7 profile-right">
                             <h3 className="text-uppercase text-center font-weight-bold mt-5 mb-4">profile</h3>
                             <div className="col-md-12">
-                                <input type="submit" className="float-right profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+                                <input className="float-right profile-edit-btn" name="btnAddMore" value={!this.state.editMode ? 'Edit Profile' : 'Save Profile'} onClick={this.changeMode} />
                             </div>
                             <div class="col-md-8 py-3">
                                 <div class="profile-head">
@@ -51,7 +99,11 @@ export default class Profile extends Component {
                                                 <label>First Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>John</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.firstName}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="firstName" placeholder="First Name" value={this.state.userInfo.firstName} onChange={this.handleChange} />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
@@ -59,7 +111,11 @@ export default class Profile extends Component {
                                                 <label>Last Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Ghelani</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.lastName}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="lastName" placeholder="First Name" value={this.state.userInfo.lastName} onChange={this.handleChange} />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
@@ -67,7 +123,11 @@ export default class Profile extends Component {
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>kshitighelani@gmail.com</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.email}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="email" placeholder="First Name" value={this.state.userInfo.email} onChange={this.handleChange} />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
@@ -75,7 +135,23 @@ export default class Profile extends Component {
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>123 456 7890</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.mobile}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="mobile" placeholder="First Name" value={this.state.userInfo.mobile} onChange={this.handleChange} />
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div class="col-md-6">
+                                                <label>Gender</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.gender}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="mobile" placeholder="First Name" value={this.state.userInfo.gender} onChange={this.handleChange} disabled />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
@@ -83,17 +159,21 @@ export default class Profile extends Component {
                                                 <label>Education</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>B.Tech</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.education}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="mobile" placeholder="First Name" value={this.state.userInfo.education} onChange={this.handleChange} disabled />
+                                                }
                                             </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="d-flex">
                                             <div class="col-md-6">
-                                                <label>Experience</label>
+                                                <label>Address</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Expert</p>
+                                                <p>{this.state.userInfo.address}</p>
                                             </div>
                                         </div>
                                         <div class="d-flex">

@@ -54,6 +54,7 @@ export default class Login extends Component {
         let { userName, password } = this.state;
         login({ userName, password }, (response) => {
             if (response && response.status == "OK") {
+                localStorage.setItem('token', response.data.token)
                 this.props.history.push("/profile");
             } else {
                 this.setAuthError(response.message);
