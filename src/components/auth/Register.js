@@ -30,32 +30,27 @@ export default class Register extends Component {
     }
 
     handleChange = (e) => {
-
         const { name, value } = e.target;
+        let errorParam = { ...this.state.errorParam };
         const notRequiredFields = ["address", "gender", "education", "email"];
         if (value == '' && !notRequiredFields.includes(name)) {
-            let errorParam = { ...this.state.errorParam };
             errorParam[name] = true;
-            this.setState({ errorParam: errorParam })
         } else {
-            this.setState({ [name]: value }, () => {
-                let errorParam = { ...this.state.errorParam };
-                errorParam[name] = false;
-                this.setState({ errorParam: errorParam })
-            })
+            errorParam[name] = false;
         }
-    };
+        this.setState({ [name]: value }, () => {
+            this.setState({ errorParam: errorParam })
+        })
+    }
 
     handleSubmit = (event) => {
         event.preventDefault();
         if (!this.validateData()) {
-            console.log("Validation Success");
             this.submitData();
         } else {
-            this.setAuthError("Validation Failed");
-            console.log("Please Provide Correct Info.")
+            this.setAuthError("Please Provide Correct Info.");
         }
-    };
+    }
 
     submitData = () => {
         let { firstName, lastName, email, password, mobile, gender, education, address } = this.state;

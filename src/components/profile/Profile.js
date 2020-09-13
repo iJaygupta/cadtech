@@ -23,7 +23,7 @@ export default class Profile extends Component {
             userInfo[name] = value;
             this.setState({ userInfo: userInfo })
         }
-    };
+    }
 
     changeMode = () => {
         if (this.state.editMode) {
