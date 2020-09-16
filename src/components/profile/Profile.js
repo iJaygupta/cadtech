@@ -33,8 +33,8 @@ export default class Profile extends Component {
     }
 
     saveProfile() {
-        let { firstName, lastName, email, mobile } = this.state.userInfo
-        updateUserAccountDetails({ firstName, lastName, email, mobile }, (response) => {
+        let { firstName, lastName, email, mobile,  } = this.state.userInfo
+        updateUserAccountDetails({ firstName, lastName, email, mobile,  }, (response) => {
             console.log(response);
             if (response && response.status == "OK") {
             } else {
@@ -173,23 +173,35 @@ export default class Profile extends Component {
                                                 <label>Address</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{this.state.userInfo.address}</p>
+                                            {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.address}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="address" placeholder="your address" value={this.state.userInfo.address} onChange={this.handleChange}  />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
                                             <div class="col-md-6">
-                                                <label>Hourly Rate</label>
+                                                <label>Mobile Verified</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>10$/hr</p>
+                                            {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.mobile_verified}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="mobile" placeholder="First Name" value={this.state.userInfo.mobile_verified} onChange={this.handleChange} disabled />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
                                             <div class="col-md-6">
-                                                <label>Total Projects</label>
+                                                <label>Email Verified</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>230</p>
+                                            {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.email_verified}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="mobile" placeholder="First Name" value={this.state.userInfo.email_verified} onChange={this.handleChange} disabled />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
