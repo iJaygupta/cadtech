@@ -63,7 +63,7 @@ const Home = () => {
               </div>
             </div>
             <div className="btn-cntainer">
-              <Link className="Know-more-btn " to="/contact-us" style={{ color: '#111f27' }}>Know More</Link>
+              <Link className="Know-more-btn" to="/contact-us">Know More</Link>
             </div>
           </div>
         </div>

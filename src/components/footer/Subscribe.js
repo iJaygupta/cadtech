@@ -48,7 +48,7 @@ export default class Login extends Component {
     let { email } = this.state;
     addSubscribe({ email }, (response) => {
       if (response && response.status == "OK") {
-        this.props.history.push("/");
+        this.props.history.push("/home");
       } else {
         this.setAuthError(response.message);
       }
@@ -93,8 +93,7 @@ export default class Login extends Component {
               <form className="news-letter-form">
                 
                 <input type="email" name="email" id="email" placeholder="Enter Your Email" onChange={this.handleChange} />
-                <span style={{ "color": "red" }} className="errorMsg ml-3">{(this.state.errorParam['email'] === true) ? "     Email is required" : (this.state.errorParam['email'] === 1) ? "          please enter a valid email address" : ""}</span>
-
+                <span style={{ "color": "red" }} className="errorMsg ml-3">{(this.state.errorParam['email'] === true) ? " email is Email is required" : (this.state.errorParam['email'] === 1) ? " email is please enter a valid email address" : ""}</span>
                 <input type="submit" value="Subscribe" onClick={this.handleSubmit} />
               </form>
             </div>

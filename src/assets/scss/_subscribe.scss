@@ -28,4 +28,11 @@
   transition: 0.3s;
   border-radius: 50px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  &:hover {
+	transform: translateY(-2px);
+	color: #FFFFFF;
+	background: #222222;
+	-webkit-filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+			filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+  }
 }
