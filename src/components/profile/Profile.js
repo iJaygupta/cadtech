@@ -33,8 +33,8 @@ export default class Profile extends Component {
     }
 
     saveProfile() {
-        let { firstName, lastName, email, mobile,  } = this.state.userInfo
-        updateUserAccountDetails({ firstName, lastName, email, mobile,  }, (response) => {
+        let { firstName, lastName, email, mobile, address } = this.state.userInfo
+        updateUserAccountDetails({ firstName, lastName, email, mobile, address }, (response) => {
             console.log(response);
             if (response && response.status == "OK") {
             } else {
@@ -173,20 +173,20 @@ export default class Profile extends Component {
                                                 <label>Address</label>
                                             </div>
                                             <div class="col-md-6">
-                                            {!this.state.editMode ?
+                                                {!this.state.editMode ?
                                                     <p>{this.state.userInfo.address}</p>
                                                     :
-                                                    <Input className="form-control" type="text" name="address" placeholder="your address" value={this.state.userInfo.address} onChange={this.handleChange}  />
+                                                    <Input className="form-control" type="text" name="address" placeholder="your address" value={this.state.userInfo.address} onChange={this.handleChange} />
                                                 }
                                             </div>
                                         </div>
                                         <div class="d-flex">
                                             <div class="col-md-6">
-                                                <label>Mobile Verified</label>
+                                                <label>Mobile</label>
                                             </div>
                                             <div class="col-md-6">
-                                            {!this.state.editMode ?
-                                                    <p>{this.state.userInfo.mobile_verified}</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.mobile_verified ? "Verified" : "Not Verified"}</p>
                                                     :
                                                     <Input className="form-control" type="text" name="mobile" placeholder="First Name" value={this.state.userInfo.mobile_verified} onChange={this.handleChange} disabled />
                                                 }
@@ -194,11 +194,11 @@ export default class Profile extends Component {
                                         </div>
                                         <div class="d-flex">
                                             <div class="col-md-6">
-                                                <label>Email Verified</label>
+                                                <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                            {!this.state.editMode ?
-                                                    <p>{this.state.userInfo.email_verified}</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.email_verified ? "Verified" : "Not Verified"}</p>
                                                     :
                                                     <Input className="form-control" type="text" name="mobile" placeholder="First Name" value={this.state.userInfo.email_verified} onChange={this.handleChange} disabled />
                                                 }
