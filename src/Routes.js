@@ -10,6 +10,7 @@ import NumberPlate from "./views/products/NumberPlate";
 import StudioLight from "./views/products/StudioLight";
 import Home from "./views/home/Home";
 import Profile from "./components/profile/Profile";
+import Course from "./components/course/Course";
 import DisplayMsg from "./views/NotFound";
 
 
@@ -22,7 +23,7 @@ const Routes = () => {
       <Route exact path="/login" component={Login} />
       <Route exact path="/about-us" component={AboutUsView} />
       <Route exact path="/contact-us" component={ContactView} />
-      <Route exact path="/courses" component={CourseView} />
+      <Route exact path="/courses" component={Course} />
       <Route exact path="/number-plate-recognition" component={NumberPlate} />
       <Route exact path="/studio-light" component={StudioLight} />
       <Route exact path="/blogs" component={BlogView} />
