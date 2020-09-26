@@ -6,7 +6,6 @@
 
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
-
 // import auth 		from './auth';
 
 const self = {
@@ -45,7 +44,9 @@ const self = {
             self.setHeader('fingerPrint', '');
             self.setFingerPrint(fingerPrintFromCookies);
         }
-        // (authenticate) ? self.setHeader('Authorization', (typeof localStorage.getItem('token') != 'undefined') ? localStorage.getItem('token') : '') : '';
+        if (authenticate) {
+            self.setHeader('Authorization', (typeof localStorage.getItem('token') != 'undefined') ? localStorage.getItem('token') : '');
+        }
         url = process.env.REACT_APP_API_URL + url
         return axios({
             method: self.method,
@@ -59,13 +60,6 @@ const self = {
             .then(function (response) {
                 self.reset();
                 if (authenticate) {
-                    if (response.data.code === "CEC4007") {
-
-                        dispatch({
-                            type: 'connectionRemoved',
-                            data: true
-                        });
-                    }
                 }
                 callback(response);
             })

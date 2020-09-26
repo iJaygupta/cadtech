@@ -14,3 +14,11 @@ export const getTeamMember = (callback) => {
         }
     })
 };
+
+export const addSubscribe = (data, callback) => {
+    return api.setMethod('POST').sendRequest(apiPaths.addSubscribe, data, false, function (response) {
+        if (response) {
+            callback(response.data);
+        }
+    })
+};

@@ -1,7 +1,7 @@
 
-import headerimage1 from '../../assets/img//home-header1.jpg';
+import headerimage1 from '../../assets/img//treegaud.jpg';
 import headerimage2 from '../../assets/img//home-header2.jpg';
-import headerimage3 from '../../assets/img//home-header3.jpg';
+import headerimage3 from '../../assets/img//c.jpg';
 export default [
 	{
 		title: 'Cad Tech',
