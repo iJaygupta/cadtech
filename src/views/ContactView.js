@@ -3,6 +3,7 @@ import PageJumbotron from '../utils/PageJumbotron'
 import { Link } from 'react-router-dom'
 import HeadingTitle from '../utils/HeadingTitle';
 import { contactUs } from '../actions/enquiryAction';
+import { toast } from 'react-toastify';
 
 const SOCIAL_LINK_LIST = [
   { id: 1, name: 'twitter', classname: 'fab fa-twitter', link: '' },
@@ -56,6 +57,9 @@ export default class ContactView extends Component {
     let { name, email, subject, message } = this.state;
     contactUs({ name, email, subject, message }, (response) => {
       if (response && response.status == "OK") {
+        toast.success(response.message, {
+          position: toast.POSITION.TOP_RIGHT
+        });
         this.props.history.push("/home");
       } else {
         this.setAuthError(response.message);

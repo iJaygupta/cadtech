@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import HeadingTitle from '../../utils/HeadingTitle'
 import { addSubscribe } from "../../actions/enquiryAction";
+import { toast } from 'react-toastify';
 
 
 export default class Login extends Component {
@@ -48,7 +49,10 @@ export default class Login extends Component {
     let { email } = this.state;
     addSubscribe({ email }, (response) => {
       if (response && response.status == "OK") {
-        this.props.history.push("/home");
+        this.setState({ email: '' })
+        toast.success(response.message, {
+          position: toast.POSITION.TOP_RIGHT
+        });
       } else {
         this.setAuthError(response.message);
       }
@@ -91,7 +95,7 @@ export default class Login extends Component {
                 titleColor={'#213b52'}
               />
               <form className="news-letter-form">
-                
+
                 <input type="email" name="email" id="email" placeholder="Enter Your Email" onChange={this.handleChange} />
                 <span style={{ "color": "red" }} className="errorMsg ml-3">{(this.state.errorParam['email'] === true) ? " email is Email is required" : (this.state.errorParam['email'] === 1) ? " email is please enter a valid email address" : ""}</span>
                 <input type="submit" value="Subscribe" onClick={this.handleSubmit} />
@@ -103,4 +107,3 @@ export default class Login extends Component {
     )
   }
 }
-
