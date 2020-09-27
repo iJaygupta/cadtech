@@ -1,7 +1,9 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { login } from "../../actions/authAction";
 import { Container, Row, CardImg, Col, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
 import './Login.scss'
+import UserContext from "../../context/userContext";
+import { toast } from 'react-toastify';
 
 
 export default class Login extends Component {
@@ -18,6 +20,7 @@ export default class Login extends Component {
         }
     }
 
+    static contextType = UserContext;
 
     handleChange = (e) => {
         const { name, value } = e.target;
@@ -49,7 +52,11 @@ export default class Login extends Component {
         let { userName, password } = this.state;
         login({ userName, password }, (response) => {
             if (response && response.status == "OK") {
-                localStorage.setItem('token', response.data.token)
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+                localStorage.setItem('token', response.data.token);
+                this.context.setValue({ isAuth: true, token: response.data.token })
                 this.props.history.push("/profile");
             } else {
                 this.setAuthError(response.message);

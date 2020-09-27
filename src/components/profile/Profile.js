@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { getUserAccountDetails, updateUserAccountDetails } from "../../actions/profileAction";
 import { Input, Button } from 'reactstrap';
-
 import moment from 'moment';
+import { toast } from 'react-toastify';
 
 export default class Profile extends Component {
     constructor(props) {
@@ -15,10 +15,39 @@ export default class Profile extends Component {
     }
 
     onFileChange = event => {
-
-        // Update the state 
         this.setState({ selectedFile: event.target.files[0] });
+    };
 
+    fileData = () => {
+        if (this.state.selectedFile) {
+            return (
+                <div>
+                    <h2>File Details:</h2>
+                    <p>File Name: {this.state.selectedFile.name}</p>
+                    <p>File Type: {this.state.selectedFile.type}</p>
+                    <p>
+                        Last Modified:{" "}
+                        {this.state.selectedFile.lastModifiedDate.toDateString()}
+                    </p>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <br />
+                    <h4>Upload Photo</h4>
+                </div>
+            );
+        }
+    };
+
+    onFileUpload = () => {
+        const formData = new FormData();
+        formData.append(
+            "myFile",
+            this.state.selectedFile,
+            this.state.selectedFile.name
+        );
     };
 
     handleChange = (e) => {
@@ -45,7 +74,13 @@ export default class Profile extends Component {
         updateUserAccountDetails({ firstName, lastName, email, mobile, gender, education, address }, (response) => {
             console.log(response);
             if (response && response.status == "OK") {
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
             } else {
+                toast.error("Something Went Wrong", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
             }
         })
     }
@@ -54,8 +89,14 @@ export default class Profile extends Component {
         getUserAccountDetails((response) => {
             console.log(response);
             if (response && response.status == "OK") {
+                // toast.success(response.message, {
+                //     position: toast.POSITION.TOP_RIGHT
+                // });
                 this.setState({ userInfo: response.data })
             } else {
+                toast.error("Something Went Wrong", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
             }
         })
     }
@@ -70,8 +111,9 @@ export default class Profile extends Component {
                             <div className="profile_img">
                                 <img src={this.state.userInfo.profile ? "https://cadtech-container.s3.ap-south-1.amazonaws.com/utils/default-dp.jpg" : "https://cadtech-container.s3.ap-south-1.amazonaws.com/utils/default-dp.jpg"} alt="Card image cap" />
                                 <div className="file btn btn-lg btn-primary">
-                                    Change Photo
-                                        <input type="file" onChange={this.onFileChange} />
+                                    {/* {this.state.userInfo.avtar ? "Change Photo" : "Upload Photo"} */}
+                                    <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={this.onFileChange} />
+                                    {this.fileData()}
                                 </div>
                             </div>
                             <div className="profile-head">

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, CardImg, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, Button, Alert } from 'reactstrap';
 import { register } from "../../actions/authAction";
 import './Register.scss'
+import { toast } from 'react-toastify';
 
 
 export default class Register extends Component {
@@ -56,6 +57,9 @@ export default class Register extends Component {
         let { firstName, lastName, email, password, mobile, gender, education, address } = this.state;
         register({ firstName, lastName, email, password, mobile, gender, education, address }, (response) => {
             if (response && response.status == "OK") {
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
                 this.props.history.push("/login");
             } else {
                 this.setAuthError(response.message);

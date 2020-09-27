@@ -1,11 +1,9 @@
 import React, { Component, useState } from "react";
 import PageJumbotron from "../../utils/PageJumbotron";
-import { Link } from 'react-router-dom';
-import ServiceImage from '../../assets/img/service-section.jpeg'
 import HeadingTitle from "../../utils/HeadingTitle";
 import './Course.scss'
 import { getCourses } from '../../actions/courseAction';
-
+import { toast } from 'react-toastify';
 
 export default class Course extends Component {
     constructor(props) {
@@ -19,6 +17,13 @@ export default class Course extends Component {
         getCourses((response) => {
             if (response && response.status == "OK") {
                 this.setState({ courses: response.data })
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            } else {
+                toast.error("Something Went Wrong", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
             }
         })
     }
