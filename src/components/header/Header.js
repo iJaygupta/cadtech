@@ -1,49 +1,93 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 // import logo from "../assets/img/cadtech.jpg";
 import { NavLink, Link } from "react-router-dom";
+import UserContext from '../../context/userContext'
 
-const HEADER_LIST = [
+
+
+const PUBLIC_HEADER_LIST = [
   {
     id: 1,
     name: "Home",
-    link: "/home"
+    link: "/",
   },
   {
     id: 2,
     name: "Courses",
-    link: "/courses"
+    link: "/courses",
   },
   {
     id: 3,
-    name: "Services",
-    link: "/services"
+    name: "Student Corner",
+    link: "/student-corner",
   },
   {
     id: 4,
-    name: "About Us",
-    link: "/about-us"
+    name: "Services",
+    link: "/services",
   },
   {
-    id: 7,
+    id: 5,
+    name: "About Us",
+    link: "/about-us",
+  },
+  {
+    id: 6,
     name: "Contact Us",
-    link: "/contact-us"
+    link: "/contact-us",
   },
   {
     id: 7,
     name: "Register",
-    link: "/register"
-  },
-  {
-    id: 7,
-    name: "Login",
-    link: "/login"
-
+    link: "/register",
   },
   {
     id: 8,
-    name: "Profile",
-    link: "/profile"
+    name: "Login",
+    link: "/login",
+  }
+];
 
+const PRIVATE_HEADER_LIST = [
+  {
+    id: 1,
+    name: "Home",
+    link: "/",
+  },
+  {
+    id: 2,
+    name: "Courses",
+    link: "/courses",
+  },
+  {
+    id: 3,
+    name: "Student Corner",
+    link: "/student-corner",
+  },
+  {
+    id: 4,
+    name: "Services",
+    link: "/services",
+  },
+  {
+    id: 5,
+    name: "About Us",
+    link: "/about-us",
+  },
+  {
+    id: 6,
+    name: "Contact Us",
+    link: "/contact-us",
+  },
+  {
+    id: 7,
+    name: "Profile",
+    link: "/profile",
+  },
+  {
+    id: 8,
+    name: "Logout",
+    link: "/logout",
   }
 ];
 
@@ -51,7 +95,9 @@ const Header = () => {
   let [navClass, setNavClass] = useState(false);
   let [menuClass, setMenuClass] = useState(false);
   let [isAuthModal, setIsAuthModal] = useState(false);
+  const { isAuth } = useContext(UserContext)
 
+  const HEADER_LIST = isAuth ? PRIVATE_HEADER_LIST : PUBLIC_HEADER_LIST;
 
   const closeMobileMenu = () => setNavClass(false);
 

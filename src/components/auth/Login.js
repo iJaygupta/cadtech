@@ -1,14 +1,15 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { login } from "../../actions/authAction";
-import { Container, Row, CardImg, Col, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, Button, Alert } from 'reactstrap';
+import { Container, Row, CardImg, Col, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
 import './Login.scss'
+import UserContext from "../../context/userContext";
+import { toast } from 'react-toastify';
 
 
 export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
             userName: "",
             password: "",
             authError: "",
@@ -19,21 +20,20 @@ export default class Login extends Component {
         }
     }
 
+    static contextType = UserContext;
 
     handleChange = (e) => {
         const { name, value } = e.target;
+        let errorParam = { ...this.state.errorParam };
         if (value == '') {
-            let errorParam = { ...this.state.errorParam };
             errorParam[name] = true;
-            this.setState({ errorParam: errorParam })
         } else {
-            this.setState({ [name]: value }, () => {
-                let errorParam = { ...this.state.errorParam };
-                errorParam[name] = false;
-                this.setState({ errorParam: errorParam })
-            })
+            errorParam[name] = false;
         }
-    };
+        this.setState({ [name]: value }, () => {
+            this.setState({ errorParam: errorParam })
+        })
+    }
 
     setAuthError(message) {
         this.setState({ authError: message })
@@ -42,18 +42,21 @@ export default class Login extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         if (!this.validateData()) {
-            console.log("Validation Success");
             this.submitData();
         } else {
-            this.setAuthError("Validation Failed");
-            console.log("Please Provide Correct Info.")
+            this.setAuthError("Please Provide Correct Info.");
         }
-    };
+    }
 
     submitData = () => {
         let { userName, password } = this.state;
         login({ userName, password }, (response) => {
             if (response && response.status == "OK") {
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+                localStorage.setItem('token', response.data.token);
+                this.context.setValue({ isAuth: true, token: response.data.token })
                 this.props.history.push("/profile");
             } else {
                 this.setAuthError(response.message);
