@@ -140,7 +140,7 @@ export default class Register extends Component {
                                         <Col md={3}>
                                             <FormGroup >
                                                 <Label className="radio inline" for="gender">
-                                                    <Input type="radio" name="gender" value={this.state.gender}
+                                                    <Input type="radio" name="gender" value={"male"}
                                                         onChange={this.handleChange}
                                                     />
                                                     Male
@@ -177,7 +177,7 @@ export default class Register extends Component {
                                     </FormGroup>
                                     <FormGroup className="form-label-group">
                                         <Label for="sequrity"></Label>
-                                        <Input className="" type="select" name="select" name="education" value={this.state.education}
+                                        <Input className="" type="select" name="select" name="education" 
                                             onChange={this.handleChange}
                                         >
                                             <option className="hidden" selected disabled>Please select your Education </option>
