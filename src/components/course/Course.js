@@ -4,6 +4,8 @@ import HeadingTitle from "../../utils/HeadingTitle";
 import './Course.scss'
 import { getCourses } from '../../actions/courseAction';
 import { toast } from 'react-toastify';
+import courses from "../../config/course.json";
+
 
 export default class Course extends Component {
     constructor(props) {
@@ -26,6 +28,8 @@ export default class Course extends Component {
                 });
             }
         })
+        this.setState({ courses: courses })
+
     }
 
     render() {
