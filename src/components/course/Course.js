@@ -13,7 +13,40 @@ export default class Course extends Component {
         this.state = {
             courses: []
         }
-    }
+        
+    //     this.items = [
+    //         "DS",
+    //         "Network",
+    //         "OS",
+    //         "DAA",
+    //         "Ajit"
+    //     ];
+    //     this.state = {
+    //         suggestions: [],
+    //     }
+    // }
+
+    // onTextChanged =  (e) => {
+    //     const value = e.target.value;
+    //     let suggestions = [];
+    //     if (value.length > 0){
+    //         const regex = new RegExp('^${value}', 'i');
+    //         suggestions = this.items.sort().filter(v => regex.test(v));
+    //     }
+    //     this.setState(() => ({suggestions})); 
+    // }
+
+    // renderSuggestions (){
+    //     const {suggestions} = this.state;
+    //     if (suggestions.length === 0) {
+    //         return null;
+    //     }
+    //     return (
+    //         <ul>
+    //             {suggestions.map((item)=> <li>{item}</li>)}
+    //         </ul>
+    //     )
+     }
 
     componentDidMount() {
         getCourses((response) => {
@@ -38,14 +71,15 @@ export default class Course extends Component {
                 <PageJumbotron headerTitle={"Courses"} />
                 <section id="service-list">
                     <div className="container-fluid">
-                    <nav class="navbar navbar-light bg-light">
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                    <nav class="navbar navbar-light">
+                        <form class="form-inline m-auto">
+                            <input  class="form-control mr-sm-2" type="search" style={{"width":"300px"}} placeholder="type your Search" aria-label="Search"/>
+                            {/* onChange={this.onTextChanged}{this.renderSuggestions()} */}
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </nav>
-                        <HeadingTitle
-                            title={"Courses"}
+                        <HeadingTitle 
+                            // title={"Courses"}
                             description={
                                 "Detail significant learning experiences and benefits students can expect"
                             }
@@ -73,7 +107,7 @@ export default class Course extends Component {
                                     return (
                                         <div className="px-2 py-4 m-auto" >
                                             <div className="col-lg-12 p-0 col-md-12 col-sm-12 mb-4 mb-lg-0" >            
-                                                <div className="b-shadow  bg-white b-rounded">
+                                                <div className="b-shadow bg-white b-rounded">
                                                     
                                                         <div id="main">
                                                             <img style={{"width":"300px","height":"200px"}} className="card-img-top" src={item.filename}></img>
@@ -83,10 +117,10 @@ export default class Course extends Component {
                                                             <h6 className="text-info font-weight-normal">{item.meta_description}</h6>
                                                             <a href="mailto:limecicila@gmail.com">limecicila@gmail.com</a>
                                                             <ul className="social mb-0 list-inline mt-3">
-                                                                <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
-                                                                <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
-                                                                <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
-                                                                <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
+                                                                <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fab fa-facebook-f"></i></a></li>
+                                                                <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fab fa-twitter"></i></a></li>
+                                                                <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fab fa-instagram"></i></a></li>
+                                                                <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fab fa-linkedin"></i></a></li>
                                                             </ul>
                                                         </div>
                                                     
