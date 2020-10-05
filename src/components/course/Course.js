@@ -37,80 +37,68 @@ export default class Course extends Component {
             <div className="service-view">
                 <PageJumbotron headerTitle={"Courses"} />
                 <section id="service-list">
-                    <div className="container">
+                    <div className="container-fluid">
+                    <nav class="navbar navbar-light bg-light">
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </nav>
                         <HeadingTitle
                             title={"Courses"}
                             description={
                                 "Detail significant learning experiences and benefits students can expect"
                             }
-                            titleColor={"#213b52"}
-                        />
-
-                        <div class="dropdown row col-sm-10 col-lg-12">
-                            <select class="form-control col-sm mx-2">
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                            </select>
-                            <select class="form-control col-sm mx-2">
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                            </select>
-                            <select class="form-control col-sm mx-2">
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                            </select>
-                            <select class="form-control col-sm mx-2">
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                                <option>Default select</option>
-                            </select>
+                            titleColor={"#213b52"}/>
+                            
+                    {/* filter */}
+                        <div className="container-fluid px-4">
+                            <div className="btn-group">
+                                <button type="button" className="form-control btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Categories
+                                </button>
+                                <div className="dropdown-menu">
+                                    <a className="dropdown-item" href="#">select1</a>
+                                    <a className="dropdown-item" href="#">select2</a>
+                                    <a className="dropdown-item" href="#">select3</a>
+                                    <a className="dropdown-item" href="#">select4</a>
+                                </div>
+                            </div>
                         </div>
+                    {/* filter */} 
 
-                        <div class="row">
-                            {this.state.courses.map((item, index) => {
-                                return (
-                                    <div class="col-sm-4">
-                                        <div class="infocardContainer">
-                                            <div id="main">
-                                                <img src={item.filename}></img>
-                                            </div>
-                                            <div id="textbois">
-                                                <h2>{item.name}</h2>
-                                                <h4>{item.meta_description}</h4>
-                                                <a href="mailto:limecicila@gmail.com">limecicila@gmail.com</a>
-                                                <div id="hotlinks">
-                                                    <a href="https://codepen.io/LIMESTA"><img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-                                                    </a>
-                                                    <a href="https://codepen.io/LIMESTA">
-                                                        <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-                                                    </a>
-                                                    <a href="https://codepen.io/LIMESTA">
-                                                        <img id="codepenio" src="https://blog.codepen.io/wp-content/uploads/2012/06/Button-Fill-Black-Small.png" target="_blank"></img>
-                                                    </a>
+                    {/* card */}
+                        <div className="container-fluid row p-3 m-auto">
+                                {this.state.courses.map((item, index) => {
+                                    return (
+                                        <div className="px-2 py-4 m-auto" >
+                                            <div className="col-lg-12 p-0 col-md-12 col-sm-12 mb-4 mb-lg-0" >            
+                                                <div className="b-shadow  bg-white b-rounded">
+                                                    
+                                                        <div id="main">
+                                                            <img style={{"width":"300px","height":"200px"}} className="card-img-top" src={item.filename}></img>
+                                                        </div>
+                                                        <div id="textbois" className="p-3">
+                                                            <h6 className="">{item.name}</h6>                                                            
+                                                            <h6 className="text-info font-weight-normal">{item.meta_description}</h6>
+                                                            <a href="mailto:limecicila@gmail.com">limecicila@gmail.com</a>
+                                                            <ul className="social mb-0 list-inline mt-3">
+                                                                <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fa fa-facebook-f"></i></a></li>
+                                                                <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fa fa-twitter"></i></a></li>
+                                                                <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fa fa-instagram"></i></a></li>
+                                                                <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fa fa-linkedin"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                )
-                            })
-                            }
+                                        </div>               
+                                        )
+                                    })
+                                }
                         </div>
-                    </div>
+                    {/* card  */}
+                 </div>
                 </section>
             </div>
         );
