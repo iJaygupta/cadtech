@@ -1,35 +1,133 @@
 import React, { Component } from 'react';
+import { getUserAccountDetails, updateUserAccountDetails } from "../../actions/profileAction";
+import { Input, Button } from 'reactstrap';
+import moment from 'moment';
+import { toast } from 'react-toastify';
 
 export default class Profile extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            userInfo: {},
+            editMode: false,
+            selectedFile: ''
+        }
+    }
+
+    onFileChange = event => {
+        this.setState({ selectedFile: event.target.files[0] });
+    };
+
+    fileData = () => {
+        if (this.state.selectedFile) {
+            return (
+                <div>
+                    <h2>File Details:</h2>
+                    <p>File Name: {this.state.selectedFile.name}</p>
+                    <p>File Type: {this.state.selectedFile.type}</p>
+                    <p>
+                        Last Modified:{" "}
+                        {this.state.selectedFile.lastModifiedDate.toDateString()}
+                    </p>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <br />
+                    <h4>Upload Photo</h4>
+                </div>
+            );
+        }
+    };
+
+    onFileUpload = () => {
+        const formData = new FormData();
+        formData.append(
+            "myFile",
+            this.state.selectedFile,
+            this.state.selectedFile.name
+        );
+    };
+
+    handleChange = (e) => {
+        const { name, value } = e.target;
+        let userInfo = this.state.userInfo;
+        if (value == '') {
+            userInfo[name] = value;
+            this.setState({ userInfo: userInfo })
+        } else {
+            userInfo[name] = value;
+            this.setState({ userInfo: userInfo })
+        }
+    }
+
+    changeMode = () => {
+        if (this.state.editMode) {
+            this.saveProfile();
+        }
+        this.setState({ editMode: !this.state.editMode });
+    }
+
+    saveProfile() {
+        let { firstName, lastName, email, mobile, gender, education, address } = this.state.userInfo
+        updateUserAccountDetails({ firstName, lastName, email, mobile, gender, education, address }, (response) => {
+            console.log(response);
+            if (response && response.status == "OK") {
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            } else {
+                toast.error("Something Went Wrong", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }
+        })
+    }
+
+    componentDidMount() {
+        getUserAccountDetails((response) => {
+            console.log(response);
+            if (response && response.status == "OK") {
+                // toast.success(response.message, {
+                //     position: toast.POSITION.TOP_RIGHT
+                // });
+                this.setState({ userInfo: response.data })
+            } else {
+                toast.error("Something Went Wrong", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }
+        })
     }
 
     render() {
+        console.log("this.state.userInfo.firstName", this.state);
         return (
             <div className="container my-5 emp-profile profile">
                 <form className="form-profile">
                     <div className="row">
                         <div className="col-md-5 py-3 profile-left">
                             <div className="profile_img">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt="Card image cap" />
+                                <img src={this.state.userInfo.profile ? "https://cadtech-container.s3.ap-south-1.amazonaws.com/utils/default-dp.jpg" : "https://cadtech-container.s3.ap-south-1.amazonaws.com/utils/default-dp.jpg"} alt="Card image cap" />
                                 <div className="file btn btn-lg btn-primary">
-                                    Change Photo
-                                        <input type="file" name="file" />
+                                    {/* {this.state.userInfo.avtar ? "Change Photo" : "Upload Photo"} */}
+                                    <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={this.onFileChange} />
+                                    {this.fileData()}
                                 </div>
                             </div>
                             <div className="profile-head">
                                 <h3 className="text-white">
-                                    Kshiti Ghelani
+                                    {`${this.state.userInfo.firstName ? this.state.userInfo.firstName : ''}  ${this.state.userInfo.lastName ? this.state.userInfo.lastName : ''}`}
                                 </h3>
                                 <p className="text-white profile-detail">Course : <span className="text-white">Web Developer and Designer</span></p>
-                                <p className="text-white profile-detail">Joining Date : <span className="text-white">12/08/2020</span></p>
+                                <p className="text-white profile-detail">Joining Date : <span className="text-white">{this.state.userInfo.createdAt ? moment(this.state.userInfo.createdAt).format('MM/DD/YYYY') : ''}</span></p>
                             </div>
                         </div>
                         <div className="col-md-7 profile-right">
                             <h3 className="text-uppercase text-center font-weight-bold mt-5 mb-4">profile</h3>
                             <div className="col-md-12">
-                                <input type="submit" className="float-right profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+                                <input className="float-right profile-edit-btn" name="btnAddMore" value={!this.state.editMode ? 'Edit Profile' : 'Save Profile'} onClick={this.changeMode} />
                             </div>
                             <div class="col-md-8 py-3">
                                 <div class="profile-head">
@@ -51,7 +149,11 @@ export default class Profile extends Component {
                                                 <label>First Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>John</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.firstName}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="firstName" placeholder="First Name" value={this.state.userInfo.firstName} onChange={this.handleChange} />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
@@ -59,7 +161,11 @@ export default class Profile extends Component {
                                                 <label>Last Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Ghelani</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.lastName}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="lastName" placeholder="Last Name" value={this.state.userInfo.lastName} onChange={this.handleChange} />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
@@ -67,7 +173,11 @@ export default class Profile extends Component {
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>kshitighelani@gmail.com</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.email}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="email" placeholder="Email" value={this.state.userInfo.email} onChange={this.handleChange} />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
@@ -75,7 +185,23 @@ export default class Profile extends Component {
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>123 456 7890</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.mobile}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="mobile" placeholder="Mobile" value={this.state.userInfo.mobile} onChange={this.handleChange} />
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div class="col-md-6">
+                                                <label>Gender</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.gender}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="gender" placeholder="Gender" value={this.state.userInfo.gender} onChange={this.handleChange} />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
@@ -83,51 +209,64 @@ export default class Profile extends Component {
                                                 <label>Education</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>B.Tech</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.education}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="education" placeholder="Education" value={this.state.userInfo.education} onChange={this.handleChange} />
+                                                }
                                             </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="d-flex">
                                             <div class="col-md-6">
-                                                <label>Experience</label>
+                                                <label>Address</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Expert</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.address}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="address" placeholder="your address" value={this.state.userInfo.address} onChange={this.handleChange} />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
                                             <div class="col-md-6">
-                                                <label>Hourly Rate</label>
+                                                <label>Mobile Verified</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>10$/hr</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.mobile_verified ? "Yes" : "No"}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="mobile" value={this.state.userInfo.mobile_verified ? "Yes" : "No"} onChange={this.handleChange} disabled />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
                                             <div class="col-md-6">
-                                                <label>Total Projects</label>
+                                                <label>Email Verified</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>230</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.email_verified ? "Yes" : "No"}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="mobile" value={this.state.userInfo.email_verified ? "Yes" : "No"} onChange={this.handleChange} disabled />
+                                                }
                                             </div>
                                         </div>
                                         <div class="d-flex">
                                             <div class="col-md-6">
-                                                <label>English Level</label>
+                                                <label>Profession</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Expert</p>
+                                                {!this.state.editMode ?
+                                                    <p>{this.state.userInfo.profession}</p>
+                                                    :
+                                                    <Input className="form-control" type="text" name="profession" placeholder="Profession" value={this.state.userInfo.profession} onChange={this.handleChange} />
+                                                }
                                             </div>
                                         </div>
-                                        <div class="d-flex">
-                                            <div class="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>

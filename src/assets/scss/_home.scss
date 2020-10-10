@@ -33,7 +33,10 @@
     transition: all 0.5s;
     &:hover {
       transform: translateY(-2px);
-    }
+      color: #FFFFFF;
+      background: #222222;
+      
+      }
   }
 }
 
@@ -96,10 +99,13 @@
     text-transform: uppercase;
     color: #eee;
     font-size: 1.2rem;
-    transition: all 0.5s;
+    transition: all 1s;
     &:hover {
       transform: translateY(-2px);
-    }
+      color: #FFFFFF;
+      background: #222222;
+      
+      }
   }
 }
 
@@ -111,4 +117,3 @@
   // background: lightblue;
   padding: 20px 10px 60px;
 }
-

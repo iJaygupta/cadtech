@@ -125,9 +125,13 @@
     color: #eee;
     font-size: 1.2rem;
     transition: all .5s;
-  &:hover {
-    transform: translateY(-2px);
-  }
+    &:hover {
+      transform: translateY(-2px);
+      color: #FFFFFF;
+      background: #222222;
+      -webkit-filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+          filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+      }
 }
 }
 

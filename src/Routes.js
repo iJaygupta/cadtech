@@ -1,33 +1,49 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import ContactView from "./views/ContactView";
 import AboutUsView from "./views/AboutUsView";
-import CourseView from "./views/CourseView";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Logout from "./components/auth/Logout";
 import BlogView from "./views/BlogView";
-import NumberPlate from "./views/products/NumberPlate";
-import StudioLight from "./views/products/StudioLight";
+import StudentCorner from "./components/student-corner/StudentCorner";
+import Services from "./views/products/Services";
 import Home from "./views/home/Home";
 import Profile from "./components/profile/Profile";
-import DisplayMsg from "./views/NotFound";
+import Course from "./components/course/Course";
+import Users from "./components/admin/users/Users";
+import ChangePassword from "./components/changePassword/ChangePassword";
+import NotFound from "./views/NotFound";
+import UserContext from "./context/userContext";
 
 
 const Routes = () => {
+  const { isAuth } = useContext(UserContext);
   return (
     <Switch>
-      <Route exact path="/" render={() => <Redirect to="/home" />} />
-      <Route exact path="/home" component={Home} />
+      <Route exact path="/" component={Home} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/about-us" component={AboutUsView} />
       <Route exact path="/contact-us" component={ContactView} />
-      <Route exact path="/courses" component={CourseView} />
-      <Route exact path="/number-plate-recognition" component={NumberPlate} />
-      <Route exact path="/studio-light" component={StudioLight} />
-      <Route exact path="/blogs" component={BlogView} />
-      <Route exact path="/profile" component={Profile} />
-      <Route path="*" component={DisplayMsg} />
+      <Route exact path="/courses" component={Course} />
+      <Route exact path="/student-corner" component={StudentCorner} />
+      <Route exact path="/services" component={Services} />
+      <Route exact path="/users" component={Users} />
+      <Route exact path="/change-password" component={ChangePassword} />
+      {isAuth ? (
+        <>
+          <Route path="/profile" component={Profile} />
+          <Route path="/blogs" component={BlogView} />
+          <Route path="/logout" component={Logout} />
+        </>
+      )
+        :
+        <>
+          <Route exact path="*" render={() => <Redirect to="/" />} />
+        </>
+      }
+      <Route exact path="*" component={NotFound} />
     </Switch>
   );
 };

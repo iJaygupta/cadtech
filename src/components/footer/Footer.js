@@ -8,13 +8,13 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-3 col-md-6 footer-contact">
-              <h3>NeuronLabsAi</h3>
+              <h3>Full Address</h3>
               <p>
-                A108 Adam Street <br />
-              New York, NY 535022<br />
-              United States <br /><br />
-                <strong>Phone:</strong> +1 5589 55488 55 <br />
-                <strong>Email:</strong> info@example.com <br />
+                T-4, 1st floor,Shivalik Nagar, Near ATM Chowk, BHEL, Ranipur  <br />
+                Haridwar (Uttrakhand)<br />
+                India <br /><br />
+                <strong>Phone:</strong>+91 9084868584 <br/> +1 6678 254445 41 <br />
+                <strong>Email:</strong> cadtechprofessionals@gmail.com <br />
               </p>
             </div>
 
@@ -22,10 +22,10 @@ const Footer = () => {
               <h4>Quick Links</h4>
               <ul>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/">About Us</Link> </li>
-                <li> <Link to="/">Courses</Link></li>
-                <li><Link to="/">Products</Link></li>
-                <li> <Link to="/">Contactus</Link></li>
+                <li><Link to="/about-us">About Us</Link> </li>
+                <li> <Link to="/courses">Courses</Link></li>
+                <li><Link to="/profile">Products</Link></li>
+                <li> <Link to="/contact-us">Contactus</Link></li>
               </ul>
             </div>
 
@@ -42,7 +42,7 @@ const Footer = () => {
 
             <div className="col-lg-4 col-md-6 footer-newsletter">
               <h4>Recent Blogs</h4>
-              <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+              <p>I Think Self-Awarness Is The Most Important Thing Towards Being Champion</p>
             </div>
 
           </div>
@@ -54,10 +54,10 @@ const Footer = () => {
 
           <div className="mr-md-auto text-center text-md-left">
             <div className="copyright">
-              &copy; Copyright <strong><span>NeuronLabs</span></strong>. All Rights Reserved
+              &copy; 2020@Copyright <strong><span>NeuronLabs</span></strong>. All Rights Reserved
   </div>
             <div className="credits">
-              Designed by <a href="https://www.google.com/">Neuronlabs</a>
+              Designed by <a href="https://www.google.com/">Jay Gupta</a>
             </div>
           </div>
           <div className="social-links text-center text-md-right pt-3 pt-md-0">

@@ -3,14 +3,20 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "./Routes";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
+import UserProvider from "./context/provider/userProvider";
+import Notification from "./components/notification/Notification";
+
 
 function App() {
 
   return (
     <Router>
-      <Header />
-      <Routes />
-      <Footer />
+      <UserProvider >
+        <Header />
+        <Routes />
+        <Footer />
+        <Notification />
+      </UserProvider>
     </Router>
   );
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, CardImg, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, Button, Alert } from 'reactstrap';
 import { register } from "../../actions/authAction";
 import './Register.scss'
+import { toast } from 'react-toastify';
 
 
 export default class Register extends Component {
@@ -30,37 +31,35 @@ export default class Register extends Component {
     }
 
     handleChange = (e) => {
-
         const { name, value } = e.target;
-        const notRequiredFields = ["address", "gender", "education"];
+        let errorParam = { ...this.state.errorParam };
+        const notRequiredFields = ["address", "gender", "education", "email"];
         if (value == '' && !notRequiredFields.includes(name)) {
-            let errorParam = { ...this.state.errorParam };
             errorParam[name] = true;
-            this.setState({ errorParam: errorParam })
         } else {
-            this.setState({ [name]: value }, () => {
-                let errorParam = { ...this.state.errorParam };
-                errorParam[name] = false;
-                this.setState({ errorParam: errorParam })
-            })
+            errorParam[name] = false;
         }
-    };
+        this.setState({ [name]: value }, () => {
+            this.setState({ errorParam: errorParam })
+        })
+    }
 
     handleSubmit = (event) => {
         event.preventDefault();
         if (!this.validateData()) {
-            console.log("Validation Success");
             this.submitData();
         } else {
-            this.setAuthError("Validation Failed");
-            console.log("Validation Failed")
+            this.setAuthError("Please Provide Correct Info.");
         }
-    };
+    }
 
     submitData = () => {
-        let { firstName, lastName, email, password, confirmPassword, mobile, gender, education, address } = this.state;
-        register({ firstName, lastName, email, password, confirmPassword, mobile, gender, education, address }, (response) => {
+        let { firstName, lastName, email, password, mobile, gender, education, address } = this.state;
+        register({ firstName, lastName, email, password, mobile, gender, education, address }, (response) => {
             if (response && response.status == "OK") {
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
                 this.props.history.push("/login");
             } else {
                 this.setAuthError(response.message);
@@ -72,12 +71,16 @@ export default class Register extends Component {
         let errorParam = { ...this.state.errorParam }
         let flag = false;
         let registerData = this.state;
-        const notRequiredFields = ["address", "gender", "education"];
+        const notRequiredFields = ["address", "gender", "education", "email", "authError"];
         for (const key in registerData) {
             if (registerData[key] == '' && !notRequiredFields.includes(key)) {
                 errorParam[key] = true;
                 flag = true;
             }
+        }
+        if (registerData['password'] != registerData['confirmPassword']) {
+            errorParam['confirmPassword'] = 1;
+            flag = true;
         }
         this.setState({ errorParam: errorParam })
         return flag;
@@ -130,14 +133,14 @@ export default class Register extends Component {
                                         <Input className="form-control" type="password" name="confirmPassword" placeholder="Confirm password"
                                             onChange={this.handleChange}
                                         />
-                                        <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['confirmPassword'] ? "Confirm password is required" : ""}</span>
+                                        <span style={{ "color": "red" }} className="errorMsg ml-3">{(this.state.errorParam['confirmPassword'] === true) ? "Confirm password is required" : (this.state.errorParam['confirmPassword'] === 1) ? "Enter same password as above" : ""}</span>
 
                                     </FormGroup>
                                     <Row form className="maxl ml-4 form-label-group">
                                         <Col md={3}>
                                             <FormGroup >
                                                 <Label className="radio inline" for="gender">
-                                                    <Input type="radio" name="gender" value={this.state.gender}
+                                                    <Input type="radio" name="gender" value={"male"}
                                                         onChange={this.handleChange}
                                                     />
                                                     Male
@@ -158,11 +161,10 @@ export default class Register extends Component {
                                 </Col>
                                 <Col md={6}>
                                     <FormGroup className="form-label-group">
-                                        <Label for="email">Your Email *</Label>
+                                        <Label for="email">Your Email </Label>
                                         <Input className="form-control" type="text" name="email" placeholder="Email"
                                             onChange={this.handleChange}
                                         />
-                                        <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['email'] ? "Email is required" : ""}</span>
 
                                     </FormGroup>
                                     <FormGroup className="form-label-group">
@@ -175,7 +177,7 @@ export default class Register extends Component {
                                     </FormGroup>
                                     <FormGroup className="form-label-group">
                                         <Label for="sequrity"></Label>
-                                        <Input className="" type="select" name="select" name="education" value={this.state.education}
+                                        <Input className="" type="select" name="select" name="education" 
                                             onChange={this.handleChange}
                                         >
                                             <option className="hidden" selected disabled>Please select your Education </option>
@@ -197,9 +199,11 @@ export default class Register extends Component {
                                     </FormGroup>
                                     <Button className="btnRegister py-2 my-4 btn btn-lg btn-primary btn-block text-uppercase btn btn-primary btn-block" color="primary" size="sm" block
                                         onClick={this.handleSubmit}
-
                                     >Register</Button>
                                 </Col>
+                                {this.state.authError && <Alert className="mt-3" color="danger">
+                                    {this.state.authError}
+                                </Alert>}
                             </Row>
                         </Form>
                     </Col>
