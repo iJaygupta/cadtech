@@ -72,7 +72,6 @@ export default class Profile extends Component {
     saveProfile() {
         let { firstName, lastName, email, mobile, gender, education, address } = this.state.userInfo
         updateUserAccountDetails({ firstName, lastName, email, mobile, gender, education, address }, (response) => {
-            console.log(response);
             if (response && response.status == "OK") {
                 toast.success(response.message, {
                     position: toast.POSITION.TOP_RIGHT
@@ -87,7 +86,6 @@ export default class Profile extends Component {
 
     componentDidMount() {
         getUserAccountDetails((response) => {
-            console.log(response);
             if (response && response.status == "OK") {
                 // toast.success(response.message, {
                 //     position: toast.POSITION.TOP_RIGHT
@@ -102,7 +100,6 @@ export default class Profile extends Component {
     }
 
     render() {
-        console.log("this.state.userInfo.firstName", this.state);
         return (
             <div className="container my-5 emp-profile profile">
                 <form className="form-profile">

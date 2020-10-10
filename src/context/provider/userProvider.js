@@ -5,9 +5,11 @@ export default class UserProvider extends Component {
     constructor(props) {
         super(props);
         const token = localStorage.getItem('token');
+        const roles = localStorage.getItem('roles');
         this.state = {
             isAuth: Boolean(token),
-            token: token
+            token: token,
+            roles: roles
         }
     }
 

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import './TeamCard.scss';
 
 const TeamCard = (props) => {
-    console.log(props)
     let teamData = props || []
     // if (teamData.length && teamData[3].teamMembers) {
     //   this.setState({ props: teamData[3].teamMembers })
