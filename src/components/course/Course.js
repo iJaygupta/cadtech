@@ -32,7 +32,7 @@ export default class Course extends Component {
             sortBy: this.state.sortBy,
             pagination: this.state.pagination,
             page: this.state.page,
-            searchKeyword: this.state.searchKeyword.trim(),
+            searchKeyword: this.state.searchKeyword ? this.state.searchKeyword.trim() : '',
             slug: this.state.slug
         }
         this.getCourseList(filters);
@@ -127,7 +127,7 @@ export default class Course extends Component {
                         <nav class="navbar navbar-light">
                             <form class="form-inline m-auto">
                                 <input class="form-control mr-sm-2" name="searchKeyword" type="search" style={{ "width": "300px" }} placeholder="What do you want to learn?" aria-label="Search" onChange={this.searchCourses} />
-                                <a class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.applyFilter}>Search</a>
+                                <a class="btn btn-outline-success my-2 my-sm-0" onClick={this.searchCourses}>Search</a>
                             </form>
                         </nav>
                         < div className="container-fluid px-4">

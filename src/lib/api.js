@@ -13,5 +13,5 @@ export default {
     getLookUpData: `/api/v1/enquiry/lookup`,
     getTeamMember: `/api/v1/enquiry/team`,
     addSubscribe: `/api/v1/enquiry/subscribe`,
-
+    getAllUsers: `/api/v1/profile/all`,
 }
