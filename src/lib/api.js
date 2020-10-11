@@ -14,4 +14,6 @@ export default {
     getTeamMember: `/api/v1/enquiry/team`,
     addSubscribe: `/api/v1/enquiry/subscribe`,
     getAllUsers: `/api/v1/profile/all`,
+    addToCart: `/api/v1/cart`,
+
 }
