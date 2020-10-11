@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import PageJumbotron from "../../utils/PageJumbotron";
+import { Link } from "react-router-dom";
 import HeadingTitle from "../../utils/HeadingTitle";
 import './Course.scss'
 import { getCourses, getCourseCategories } from '../../actions/courseAction';
@@ -20,7 +20,7 @@ export default class Course extends Component {
             sortBy: "",
             pagination: "",
             page: "",
-            slug: ""
+            course_category_id: ""
         }
     }
 
@@ -33,7 +33,7 @@ export default class Course extends Component {
             pagination: this.state.pagination,
             page: this.state.page,
             searchKeyword: this.state.searchKeyword ? this.state.searchKeyword.trim() : '',
-            slug: this.state.slug
+            course_category_id: this.state.course_category_id
         }
         this.getCourseList(filters);
     }
@@ -48,7 +48,7 @@ export default class Course extends Component {
             sortBy: "",
             pagination: "",
             page: "",
-            slug: ""
+            course_category_id: ""
         }, () => {
             this.applyFilter();
         })
@@ -63,14 +63,14 @@ export default class Course extends Component {
             orderBy: this.state.orderBy,
             sortBy: this.state.sortBy,
             searchKeyword: this.state.searchKeyword.trim(),
-            slug: this.state.slug
+            course_category_id: this.state.course_category_id
         }, () => {
             this.applyFilter();
         });
     }
 
     filterCourse = (value) => {
-        this.setState({ slug: value }, () => { this.applyFilter(); })
+        this.setState({ course_category_id: value }, () => { this.applyFilter(); })
     }
 
     handleChange = (e) => {
@@ -137,7 +137,7 @@ export default class Course extends Component {
                                 </button>
                                 <div className="dropdown-menu">
                                     {this.state.courseCategories.map(el => {
-                                        return <a className="dropdown-item" href="javascript:void(0);" onClick={() => { this.filterCourse(el.slug) }}>{el.name}</a>
+                                        return <a className="dropdown-item" href="javascript:void(0);" onClick={() => { this.filterCourse(el._id) }}>{el.name}</a>
                                     })}
                                 </div>
                             </div>
@@ -150,29 +150,33 @@ export default class Course extends Component {
                             titleColor={"#213b52"} />
                         <div className="container-fluid row p-3 m-auto">
                             {this.state.courses.items && this.state.courses.items.map((item, index) => {
+                                let courseLink = `/course/detail/${item._id}`
                                 return (
-                                    <div className="px-2 py-4 m-auto" >
-                                        <div className="col-lg-12 p-0 col-md-12 col-sm-12 mb-4 mb-lg-0" >
-                                            <div className="b-shadow bg-white b-rounded">
+                                    < Link to={courseLink} >
+                                        <div className="px-2 py-4 m-auto" >
+                                            <div className="col-lg-12 p-0 col-md-12 col-sm-12 mb-4 mb-lg-0" >
+                                                <div className="b-shadow bg-white b-rounded">
 
-                                                <div id="main">
-                                                    <img style={{ "width": "300px", "height": "200px" }} className="card-img-top" src={item.filename}></img>
-                                                </div>
-                                                <div id="textbois" className="p-3">
-                                                    <h6 className="">{item.name}</h6>
-                                                    <h6 className="text-info font-weight-normal">{item.meta_description}</h6>
-                                                    <a href="mailto:limecicila@gmail.com">limecicila@gmail.com</a>
-                                                    <ul className="social mb-0 list-inline mt-3">
-                                                        <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fab fa-facebook-f"></i></a></li>
-                                                        <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fab fa-twitter"></i></a></li>
-                                                        <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fab fa-instagram"></i></a></li>
-                                                        <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fab fa-linkedin"></i></a></li>
-                                                    </ul>
-                                                </div>
+                                                    <div id="main">
+                                                        <img style={{ "width": "300px", "height": "200px" }} className="card-img-top" src={item.filename}></img>
+                                                    </div>
+                                                    <div id="textbois" className="p-3">
+                                                        <h6 className="">{item.name}</h6>
+                                                        <h6 className="text-info font-weight-normal">{item.duration}</h6>
+                                                        <a class="text-warning"> <del>&#2352;</del>{item.price} </a>
+                                                        {/* <a href="mailto:limecicila@gmail.com">1200$</a> */}
+                                                        <ul className="social mb-0 list-inline mt-3">
+                                                            <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fab fa-facebook-f"></i></a></li>
+                                                            <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fab fa-twitter"></i></a></li>
+                                                            <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fab fa-instagram"></i></a></li>
+                                                            <li className="list-inline-item m-0"><a href="#" className="social-link"><i className="fab fa-linkedin"></i></a></li>
+                                                        </ul>
+                                                    </div>
 
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 )
                             })
                             }
@@ -201,9 +205,9 @@ export default class Course extends Component {
                             </div>
 
                         </div>
-                    </div>
-                </section>
-            </div>
+                    </div >
+                </section >
+            </div >
         );
     }
 
