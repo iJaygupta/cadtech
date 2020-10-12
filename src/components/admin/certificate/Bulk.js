@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import $ from "jquery";
 import './Bulk.css';
 import { getBulkData } from '../../../actions/enquiryAction';
+import { uploadCsv } from '../../../actions/enquiryAction';
 import { toast } from 'react-toastify';
 import moment from 'moment';
+//import axios from 'axios';
 
 
 
@@ -12,7 +14,8 @@ export default class Bulk extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: [],
+            users: {},
+            selectedFile:null,
             skip: "",
             limit: "",
             searchKeyword: "",
@@ -40,7 +43,7 @@ export default class Bulk extends Component {
     getUsersList = (filters) => {
         getBulkData(filters, (response) => {
             if (response && response.status == "OK") {
-                this.setState({ users: response.data.items })
+                this.setState({ users: response.data })
                 if (!filters) {
                     toast.success(response.message, {
                         position: toast.POSITION.TOP_RIGHT
@@ -99,6 +102,59 @@ export default class Bulk extends Component {
             this.applyFilter();
         });
     }
+    onFileChange = event => {
+        // Update the state 
+        this.setState({ selectedFile: event.target.files[0] });
+
+    };
+
+    onFileUpload = () => {
+        const formData = new FormData();
+        formData.append(
+            "myFile",
+            this.state.selectedFile,
+        );
+        console.log(this.state.selectedFile);
+        // Request made to the backend api 
+        // Send formData object 
+       // axios.post("/api/v1/enquiry/certificates/data/upload", formData);
+        uploadCsv((response) => {
+            if (response && response.status == "OK") {
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            } else {
+                toast.error("Something Went Wrong", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }
+        })
+    };
+
+    fileData = () => {
+
+        if (this.state.selectedFile) {
+
+            return (
+                <div>
+                    <h2>File Details:</h2>
+                    <p>File Name: {this.state.selectedFile.name}</p>
+                    <p>File Type: {this.state.selectedFile.type}</p>
+                    <p>
+                        Last Modified:{" "}
+                        {this.state.selectedFile.lastModifiedDate.toDateString()}
+                    </p>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <br />
+                    <h4>Choose before Pressing the Upload button</h4>
+                </div>
+            );
+        }
+    };
 
     render() {
 
@@ -112,7 +168,7 @@ export default class Bulk extends Component {
         if (this.state.users && this.state.users.length) {
             var users = this.state.users.map(data => {
                 return (<tr className="table-success">
-                    <td>{data.registration_id }</td>
+                    <td>{data.registration_id}</td>
                     <td>{data.fullName}</td>
                     <td>{data.course}</td>
                     <td>{data.grade}</td>
@@ -135,8 +191,16 @@ export default class Bulk extends Component {
                             <form className="search-box form-inline">
                                 {/* <i class="material-icons">&#xE8B6;</i> */}
                                 <input id="table-serach" className="form-control mr-sm-2" type="search" placeholder="Search" onChange={this.searchProviders} aria-label="Search" />
-                                <button> Upload CSV</button>
                             </form>
+                            <div>
+                                <div>
+                                    <input type="file" onChange={this.onFileChange} />
+                                    <button onClick={this.onFileUpload}>
+                                        Upload!
+                                     </button>
+                                </div>
+                                {this.fileData()}
+                            </div>
                         </nav>
                         <table id="table-data" className="table-bordered table table-hover">
                             <thead className="thead-dark">

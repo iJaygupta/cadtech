@@ -33,3 +33,11 @@ export const getBulkData = (filters, callback) => {
         }
     })
 };
+
+export const uploadCsv = (data, callback) => {
+    return api.setMethod('POST').sendRequest(apiPaths.uploadCsv, data, false, function (response) {
+        if (response) {
+            callback(response.data);
+        }
+    })
+};

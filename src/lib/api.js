@@ -14,5 +14,7 @@ export default {
     getTeamMember: `/api/v1/enquiry/team`,
     addSubscribe: `/api/v1/enquiry/subscribe`,
     getAllUsers: `/api/v1/profile/all`,
-    getBulkData: `/v1/enquiry/certificates/data/upload`,
+    getBulkData: `/api/v1/enquiry/certificates/data/upload`,
+    uploadCsv: `/api/v1/enquiry/certificates/data/upload`,
 }
+
