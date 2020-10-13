@@ -118,13 +118,13 @@ export default class Bulk extends Component {
         // Request made to the backend api 
         // Send formData object 
        // axios.post("/api/v1/enquiry/certificates/data/upload", formData);
-        uploadCsv((response) => {
+        uploadCsv(formData, (response) => {
             if (response && response.status == "OK") {
-                toast.success(response.message, {
-                    position: toast.POSITION.TOP_RIGHT
-                });
+                    toast.success(response.message, {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
             } else {
-                toast.error("Something Went Wrong", {
+                toast.error(response.message, {
                     position: toast.POSITION.TOP_RIGHT
                 });
             }
