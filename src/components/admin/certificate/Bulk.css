@@ -82,3 +82,25 @@ table.table td i {
     margin-top: 6px;
     font-size: 95%;
 } 
+.space{
+	  margin-top: 20px;
+      margin-bottom: 10px;
+	  border: none;
+	  border-radius: 1.5rem;
+	  padding: 1%;
+	  background: #0062cc;
+	  color: #fff;
+	  font-weight: 600;
+	  width: 15%;
+      transition: all .5s;
+}
+.space:hover{
+	color: #FFFFFF;
+	background: #222222;
+}
+.choose{
+  background:  #0062cc;
+	  border-radius: 1.5rem;
+  color: red;
+  padding: 1em;
+}

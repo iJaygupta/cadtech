@@ -6,15 +6,12 @@ import { getBulkData } from '../../../actions/enquiryAction';
 import { uploadCsv } from '../../../actions/enquiryAction';
 import { toast } from 'react-toastify';
 import moment from 'moment';
-//import axios from 'axios';
-
-
 
 export default class Bulk extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: {},
+            certificates: {},
             selectedFile:null,
             skip: "",
             limit: "",
@@ -40,10 +37,10 @@ export default class Bulk extends Component {
         });
     }
 
-    getUsersList = (filters) => {
+    getStudentsList = (filters) => {
         getBulkData(filters, (response) => {
             if (response && response.status == "OK") {
-                this.setState({ users: response.data })
+                this.setState({ certificates: response.data.items })
                 if (!filters) {
                     toast.success(response.message, {
                         position: toast.POSITION.TOP_RIGHT
@@ -58,7 +55,7 @@ export default class Bulk extends Component {
     }
 
     componentDidMount() {
-        this.getUsersList();
+        this.getStudentsList();
     }
 
     applyFilter = () => {
@@ -71,7 +68,7 @@ export default class Bulk extends Component {
             page: this.state.page,
             searchKeyword: this.state.searchKeyword.trim()
         }
-        this.getUsersList(filters);
+        this. getStudentsList(filters);
     }
 
     searchProviders = (e) => {
@@ -114,10 +111,6 @@ export default class Bulk extends Component {
             "myFile",
             this.state.selectedFile,
         );
-        console.log(this.state.selectedFile);
-        // Request made to the backend api 
-        // Send formData object 
-       // axios.post("/api/v1/enquiry/certificates/data/upload", formData);
         uploadCsv(formData, (response) => {
             if (response && response.status == "OK") {
                     toast.success(response.message, {
@@ -131,31 +124,6 @@ export default class Bulk extends Component {
         })
     };
 
-    fileData = () => {
-
-        if (this.state.selectedFile) {
-
-            return (
-                <div>
-                    <h2>File Details:</h2>
-                    <p>File Name: {this.state.selectedFile.name}</p>
-                    <p>File Type: {this.state.selectedFile.type}</p>
-                    <p>
-                        Last Modified:{" "}
-                        {this.state.selectedFile.lastModifiedDate.toDateString()}
-                    </p>
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <br />
-                    <h4>Choose before Pressing the Upload button</h4>
-                </div>
-            );
-        }
-    };
-
     render() {
 
         console.log(this.state)
@@ -165,8 +133,8 @@ export default class Bulk extends Component {
         let previousPage = this.props.provider && this.props.provider.pagination ? this.props.provider.pagination.previousPage : "";
         let nextPage = this.props.provider && this.props.provider.pagination && this.props.provider.pagination ? this.props.provider.pagination.nextPage : 2;
 
-        if (this.state.users && this.state.users.length) {
-            var users = this.state.users.map(data => {
+        if (this.state.certificates && this.state.certificates.length) {
+            var certificates = this.state.certificates.map(data => {
                 return (<tr className="table-success">
                     <td>{data.registration_id}</td>
                     <td>{data.fullName}</td>
@@ -185,22 +153,24 @@ export default class Bulk extends Component {
         return (
             <div className="container-fluid">
                 <div className="table-wrapper">
+                             <div>
+                                <div>
+                                    <input className="choose" type="file" onChange={this.onFileChange} />
+                                    <div>
+                                        <button className="space" onClick={this.onFileUpload}>
+                                        Upload!
+                                     </button> 
+                                    </div>
+                                   
+                                </div>
+                            </div>
                     <div className="table-title">
                         <nav className="navbar navbar-light bg-light justify-content-between">
-                            <a className="navbar-brand">Brand_Logo</a>
+                            <a className="navbar-brand">Student List</a>
                             <form className="search-box form-inline">
                                 {/* <i class="material-icons">&#xE8B6;</i> */}
                                 <input id="table-serach" className="form-control mr-sm-2" type="search" placeholder="Search" onChange={this.searchProviders} aria-label="Search" />
                             </form>
-                            <div>
-                                <div>
-                                    <input type="file" onChange={this.onFileChange} />
-                                    <button onClick={this.onFileUpload}>
-                                        Upload!
-                                     </button>
-                                </div>
-                                {this.fileData()}
-                            </div>
                         </nav>
                         <table id="table-data" className="table-bordered table table-hover">
                             <thead className="thead-dark">
@@ -215,7 +185,7 @@ export default class Bulk extends Component {
                                 </tr>
                             </thead>
                             <tbody className="" id="myTable">
-                                {users}
+                                {certificates}
                             </tbody>
                         </table>
 
