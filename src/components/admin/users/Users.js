@@ -2,12 +2,17 @@
 import React, { Component } from 'react';
 import $ from "jquery";
 import './Users.css';
+import { getAllUsers } from '../../../actions/profileAction';
+import { toast } from 'react-toastify';
+import moment from 'moment';
+
 
 
 export default class Users extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            users: [],
             skip: "",
             limit: "",
             searchKeyword: "",
@@ -16,102 +21,6 @@ export default class Users extends Component {
             pagination: "",
             page: "",
         }
-        this.users = [
-            {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            },
-            {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            }, {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            }, {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            }, {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            }, {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            }, {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            }, {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            }, {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            }, {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            }, {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            }, {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            }, {
-                "id": 4443990,
-                "name": "Jay Gupta",
-                "email": "jayguptazzz@gmail.com",
-                "mobile": "8808974265",
-                "isActive": true,
-                "createdAt": "2010-11-09"
-            },
-
-        ]
     }
 
     sortList = (field) => {
@@ -129,10 +38,25 @@ export default class Users extends Component {
         });
     }
 
-    getUsersList = () => {
+    getUsersList = (filters) => {
+        getAllUsers(filters, (response) => {
+            if (response && response.status == "OK") {
+                this.setState({ users: response.data.items })
+                if (!filters) {
+                    toast.success(response.message, {
+                        position: toast.POSITION.TOP_RIGHT
+                    });
+                }
+            } else {
+                toast.error(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }
+        })
     }
 
     componentDidMount() {
+        this.getUsersList();
     }
 
     applyFilter = () => {
@@ -145,8 +69,7 @@ export default class Users extends Component {
             page: this.state.page,
             searchKeyword: this.state.searchKeyword.trim()
         }
-        this.props.profileAction.getUsersList(filters, (response) => {
-        })
+        this.getUsersList(filters);
     }
 
     searchProviders = (e) => {
@@ -180,19 +103,21 @@ export default class Users extends Component {
 
     render() {
 
+        console.log(this.state)
+
         let totalRecords = this.props.provider ? this.props.provider.totalRecords : ""
         let totalResult = this.props.provider ? this.props.provider.totalResult : "";
         let previousPage = this.props.provider && this.props.provider.pagination ? this.props.provider.pagination.previousPage : "";
         let nextPage = this.props.provider && this.props.provider.pagination && this.props.provider.pagination ? this.props.provider.pagination.nextPage : 2;
 
-        if (this.users && this.users.length) {
-            var users = this.users.map(data => {
+        if (this.state.users && this.state.users.length) {
+            var users = this.state.users.map(data => {
                 return (<tr className="table-success">
-                    <td>{data.name}</td>
+                    <td>{data.firstName + " " + data.lastName}</td>
                     <td>{data.email}</td>
                     <td>{data.mobile}</td>
-                    <td>{data.createdAt}</td>
-                    <td>{data.isActive ? "Active" : "Blocked"}</td>
+                    <td>{data.createdAt ? moment(data.createdAt).format('MM/DD/YYYY') : ''}</td>
+                    <td>{!data.status ? "Active" : "Blocked"}</td>
                     <td>
                         <a href="#" className="view" title="View" data-toggle="tooltip"><i className="material-icons">&#xE417;</i></a>
                     </td>

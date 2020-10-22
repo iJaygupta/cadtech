@@ -6,105 +6,105 @@
         "slug": "civil",
         "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/civil.jpg",
         "total_classes": 12,
-        "course_category_id": ""
+        "course_category_id": "5f5e72322a23021d499ad845"
     },
     {
         "name": "Solid Works",
         "meta_title": "ME",
         "meta_description": "AC",
-        "slug": "electrical and electonics",
+        "slug": "civil",
         "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/solid-works.jpg",
         "total_classes": 12,
-        "course_category_id": ""
+        "course_category_id": "5f5e72322a23021d499ad845"
     },
     {
         "name": "Catia",
         "meta_title": "ME",
         "meta_description": "mech",
-        "slug": "electrical and electonics",
+        "slug": "mech",
         "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/catia.jpg",
         "total_classes": 12,
-        "course_category_id": ""
+        "course_category_id": "5f5e72322a23021d499ad849"
     },
     {
         "name": "Full Stack Development",
         "meta_title": "cad",
         "meta_description": "AC",
-        "slug": "electrical and electonics",
+        "slug": "computer",
         "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/computer-science.jpg",
         "total_classes": 12,
-        "course_category_id": ""
+        "course_category_id": "5f5e72322a23021d499ad846"
     },
     {
         "name": "Web Designing",
         "meta_title": "cad",
         "meta_description": "AC",
-        "slug": "electrical and electonics",
+        "slug": "computer",
         "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/utils/about.jpg",
         "total_classes": 12,
-        "course_category_id": ""
+        "course_category_id": "5f5e72322a23021d499ad846"
     },
     {
         "name": "Revit",
         "meta_title": "civil",
         "meta_description": "AC",
-        "slug": "electrical and electonics",
+        "slug": "civil",
         "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/electronics.jpg",
         "total_classes": 12,
-        "course_category_id": ""
+        "course_category_id": "5f5e72322a23021d499ad845"
     },
     {
         "name": "3DS Max",
         "meta_title": "civil",
         "meta_description": "AC",
-        "slug": "electrical and electonics",
+        "slug": "civil",
         "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/utils/about.jpg",
         "total_classes": 12,
-        "course_category_id": ""
+        "course_category_id": "5f5e72322a23021d499ad845"
     },
     {
         "name": "Stadd Pro",
         "meta_title": "Civil",
         "meta_description": "AC",
-        "slug": "electrical and electonics",
+        "slug": "civil",
         "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/mechanical.jpg",
         "total_classes": 12,
-        "course_category_id": ""
+        "course_category_id": "5f5e72322a23021d499ad845"
     },
     {
         "name": "Robotics",
         "meta_title": "ECE",
         "meta_description": "AC",
-        "slug": "electrical and electonics",
+        "slug": "electonics",
         "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/micro-processor.jpg",
         "total_classes": 12,
-        "course_category_id": ""
+        "course_category_id": "5f5e72322a23021d499ad851"
     },
     {
         "name": "Ethical Hacking",
         "meta_title": "hacking",
         "meta_description": "AC",
-        "slug": "electrical and electonics",
+        "slug": "computer",
         "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/ethical-hacking.jpg",
         "total_classes": 12,
-        "course_category_id": ""
+        "course_category_id": "5f5e72322a23021d499ad846"
     },
     {
         "name": "PLC Scada",
         "meta_title": "ECE",
         "meta_description": "AC",
-        "slug": "electrical and electonics",
+        "slug": "electonics",
         "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/plc.jpeg",
         "total_classes": 12,
-        "course_category_id": ""
+        "course_category_id": "5f5e72322a23021d499ad851"
     },
     {
         "name": "CNC Programming",
         "meta_title": "cnc",
         "meta_description": "AC",
-        "slug": "electrical and electonics",
+        "slug": "electrical",
         "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/cnc-programming.jpg",
         "total_classes": 12,
-        "course_category_id": ""
+        "course_category_id": "5f5e72322a23021d499ad841"
     }
 ]
