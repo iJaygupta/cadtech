@@ -11,8 +11,8 @@ export default class Bulk extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            certificates: {},
-            selectedFile:null,
+            certificates: [],
+            selectedFile: null,
             skip: "",
             limit: "",
             searchKeyword: "",
@@ -22,6 +22,7 @@ export default class Bulk extends Component {
             page: "",
         }
     }
+
     sortList = (field) => {
         let order = (field == this.state.sortBy && this.state.orderBy && this.state.orderBy == 'asc') ? 'desc' : 'asc';
         this.setState({
@@ -68,7 +69,7 @@ export default class Bulk extends Component {
             page: this.state.page,
             searchKeyword: this.state.searchKeyword.trim()
         }
-        this. getStudentsList(filters);
+        this.getStudentsList(filters);
     }
 
     searchProviders = (e) => {
@@ -112,10 +113,12 @@ export default class Bulk extends Component {
             this.state.selectedFile,
         );
         uploadCsv(formData, (response) => {
+            this.setState({ selectedFile: null })
             if (response && response.status == "OK") {
-                    toast.success(response.message, {
-                        position: toast.POSITION.TOP_RIGHT
-                    });
+                this.getStudentsList({});
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
             } else {
                 toast.error(response.message, {
                     position: toast.POSITION.TOP_RIGHT
@@ -125,9 +128,6 @@ export default class Bulk extends Component {
     };
 
     render() {
-
-        console.log(this.state)
-
         let totalRecords = this.props.provider ? this.props.provider.totalRecords : ""
         let totalResult = this.props.provider ? this.props.provider.totalResult : "";
         let previousPage = this.props.provider && this.props.provider.pagination ? this.props.provider.pagination.previousPage : "";
@@ -153,17 +153,17 @@ export default class Bulk extends Component {
         return (
             <div className="container-fluid">
                 <div className="table-wrapper">
-                             <div>
-                                <div>
-                                    <input className="choose" type="file" onChange={this.onFileChange} />
-                                    <div>
-                                        <button className="space" onClick={this.onFileUpload}>
-                                        Upload!
-                                     </button> 
-                                    </div>
-                                   
-                                </div>
+                    <div>
+                        <div>
+                            <input className="choose" type="file" onChange={this.onFileChange} />
+                            <div>
+                                <button className="space" onClick={this.onFileUpload}>
+                                    Upload!
+                                     </button>
                             </div>
+
+                        </div>
+                    </div>
                     <div className="table-title">
                         <nav className="navbar navbar-light bg-light justify-content-between">
                             <a className="navbar-brand">Student List</a>

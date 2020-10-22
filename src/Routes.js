@@ -34,7 +34,7 @@ const Routes = () => {
       <Route exact path="/student-corner" component={StudentCorner} />
       <Route exact path="/services" component={Services} />
       <Route exact path="/users" component={Users} />
-      <Route exact path="/Certificate" component={certificates} />
+      <Route exact path="/student-certificates" component={certificates} />
       <Route exact path="/change-password" component={ChangePassword} />
       {isAuth ? (
         <>
