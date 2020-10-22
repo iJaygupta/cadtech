@@ -16,5 +16,6 @@ export default {
     getAllUsers: `/api/v1/profile/all`,
     getBulkData: `/api/v1/enquiry/certificates/data/upload`,
     uploadCsv: `/api/v1/enquiry/certificates/data/upload`,
-}
+    addToCart: `/api/v1/cart`
 
+}

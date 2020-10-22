@@ -1,6 +1,7 @@
 import React from 'react'
 import './CourseDetail.scss'
 import { getCourseById } from '../../actions/courseAction';
+import { addToCart } from '../../actions/orderAction';
 import { toast } from 'react-toastify';
 
 
@@ -13,6 +14,26 @@ export default class CourseDetail extends React.Component {
             relatedCourses: []
         }
     }
+
+    addToCart = (courseId) => {
+        let data = {
+            product_id: courseId
+        }
+        addToCart(data, (response) => {
+            if (response && response.status == "OK") {
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            } else {
+                toast.error("Something Went Wrong", {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }
+        })
+
+    }
+
+
     getCourseDetail = () => {
         let courseId = this.props.match.params.courseId;
         if (courseId) {
@@ -34,11 +55,6 @@ export default class CourseDetail extends React.Component {
     }
 
     render() {
-        console.log(this.props.match.params.courseId);
-        console.log(this.state);
-
-
-
         return (
             <div className="column">
                 <div className="main-container m-auto">
@@ -93,7 +109,7 @@ export default class CourseDetail extends React.Component {
                                                 </div>
                                                 <div class="columns cartBtns mt-2">
                                                     <div class="column col-5 col-md-6">
-                                                        <button class="btn btn-lg btn-primary buyBtn btn-block">Add to Cart</button>
+                                                        <button class="btn btn-lg btn-primary buyBtn btn-block" onClick={() => { this.addToCart(this.state.courseDetail._id) }}>Add to Cart</button>
                                                     </div>
                                                 </div>
 
