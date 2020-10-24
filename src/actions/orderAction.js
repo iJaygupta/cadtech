@@ -12,3 +12,12 @@ export const addToCart = (data, callback) => {
         }
     })
 };
+
+export const getAllOrders = (filters, callback) => {
+    let getAllUsersUrl = buildUrl(apiPaths.getAllOrders, filters)
+    return api.setMethod('GET').sendRequest(getAllUsersUrl, null, true, function (response) {
+        if (response) {
+            callback(response.data);
+        }
+    })
+};
