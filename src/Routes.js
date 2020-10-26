@@ -13,10 +13,9 @@ import Profile from "./components/profile/Profile";
 import Course from "./components/course/Course";
 import CourseDetail from "./components/course/CourseDetail";
 import Users from "./components/admin/users/Users";
-import certificates from "./components/admin/certificate/Bulk.js";
-import ChangePassword from "./components/change-password/ChangePassword";
 import NotFound from "./views/NotFound";
 import UserContext from "./context/userContext";
+import ChangePassword from "./components/changePassword/ChangePassword";
 
 
 const Routes = () => {

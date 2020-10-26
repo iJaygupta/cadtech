@@ -6,7 +6,6 @@ import Header from "./components/header/Header";
 import UserProvider from "./context/provider/userProvider";
 import Notification from "./components/notification/Notification";
 
-
 function App() {
 
   return (
