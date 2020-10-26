@@ -12,9 +12,9 @@ import Home from "./views/home/Home";
 import Profile from "./components/profile/Profile";
 import Course from "./components/course/Course";
 import Users from "./components/admin/users/Users";
-import ChangePassword from "./components/changePassword/ChangePassword";
 import NotFound from "./views/NotFound";
 import UserContext from "./context/userContext";
+import ChangePassword from "./components/changePassword/ChangePassword";
 
 
 const Routes = () => {
