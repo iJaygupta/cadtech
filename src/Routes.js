@@ -15,6 +15,7 @@ import CourseDetail from "./components/course/CourseDetail";
 import Users from "./components/admin/users/Users";
 import certificates from "./components/admin/certificate/Bulk.js";
 import Orders from "./components/admin/order/order.js";
+import Enquiries from "./components/admin/enquiries/Enquiries.js";
 import ChangePassword from "./components/change-password/ChangePassword";
 import NotFound from "./views/NotFound";
 import UserContext from "./context/userContext";
@@ -37,6 +38,7 @@ const Routes = () => {
       <Route exact path="/users" component={Users} />
       <Route exact path="/student-certificates" component={certificates} />
       <Route exact path="/orders" component={Orders} />
+      <Route exact path="/enquiries" component={Enquiries} />
       <Route exact path="/change-password" component={ChangePassword} />
       {isAuth ? (
         <>
