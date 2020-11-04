@@ -56,6 +56,7 @@ export default class Login extends Component {
                     position: toast.POSITION.TOP_RIGHT
                 });
                 localStorage.setItem('token', response.data.token);
+                localStorage.setItem('roles', response.data.user.roles);
                 this.context.setValue({ isAuth: true, token: response.data.token })
                 this.props.history.push("/profile");
             } else {

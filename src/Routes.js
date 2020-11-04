@@ -11,8 +11,10 @@ import Services from "./views/products/Services";
 import Home from "./views/home/Home";
 import Profile from "./components/profile/Profile";
 import Course from "./components/course/Course";
+import CourseDetail from "./components/course/CourseDetail";
 import Users from "./components/admin/users/Users";
-import ChangePassword from "./components/changePassword/ChangePassword";
+import certificates from "./components/admin/certificate/Bulk.js";
+import ChangePassword from "./components/change-password/ChangePassword";
 import NotFound from "./views/NotFound";
 import UserContext from "./context/userContext";
 
@@ -23,13 +25,16 @@ const Routes = () => {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/register" component={Register} />
+      <Route path="/blogs" component={BlogView} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/about-us" component={AboutUsView} />
       <Route exact path="/contact-us" component={ContactView} />
       <Route exact path="/courses" component={Course} />
+      <Route exact path="/course/detail/:courseId" component={CourseDetail} />
       <Route exact path="/student-corner" component={StudentCorner} />
       <Route exact path="/services" component={Services} />
       <Route exact path="/users" component={Users} />
+      <Route exact path="/student-certificates" component={certificates} />
       <Route exact path="/change-password" component={ChangePassword} />
       {isAuth ? (
         <>

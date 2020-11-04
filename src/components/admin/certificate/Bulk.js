@@ -1,18 +1,18 @@
 
 import React, { Component } from 'react';
 import $ from "jquery";
-import './Users.css';
-import { getAllUsers } from '../../../actions/profileAction';
+import './Bulk.css';
+import { getBulkData } from '../../../actions/enquiryAction';
+import { uploadCsv } from '../../../actions/enquiryAction';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 
-
-
-export default class Users extends Component {
+export default class Bulk extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: [],
+            certificates: [],
+            selectedFile: null,
             skip: "",
             limit: "",
             searchKeyword: "",
@@ -38,10 +38,10 @@ export default class Users extends Component {
         });
     }
 
-    getUsersList = (filters) => {
-        getAllUsers(filters, (response) => {
+    getStudentsList = (filters) => {
+        getBulkData(filters, (response) => {
             if (response && response.status == "OK") {
-                this.setState({ users: response.data.items })
+                this.setState({ certificates: response.data.items })
                 if (!filters) {
                     toast.success(response.message, {
                         position: toast.POSITION.TOP_RIGHT
@@ -56,7 +56,7 @@ export default class Users extends Component {
     }
 
     componentDidMount() {
-        this.getUsersList();
+        this.getStudentsList();
     }
 
     applyFilter = () => {
@@ -69,7 +69,7 @@ export default class Users extends Component {
             page: this.state.page,
             searchKeyword: this.state.searchKeyword.trim()
         }
-        this.getUsersList(filters);
+        this.getStudentsList(filters);
     }
 
     searchProviders = (e) => {
@@ -100,22 +100,46 @@ export default class Users extends Component {
             this.applyFilter();
         });
     }
+    onFileChange = event => {
+        // Update the state 
+        this.setState({ selectedFile: event.target.files[0] });
+
+    };
+
+    onFileUpload = () => {
+        const formData = new FormData();
+        formData.append(
+            "myFile",
+            this.state.selectedFile,
+        );
+        uploadCsv(formData, (response) => {
+            this.setState({ selectedFile: null })
+            if (response && response.status == "OK") {
+                this.getStudentsList({});
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            } else {
+                toast.error(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }
+        })
+    };
 
     render() {
-
-        console.log(this.state)
-
         let totalRecords = this.props.provider ? this.props.provider.totalRecords : ""
         let totalResult = this.props.provider ? this.props.provider.totalResult : "";
         let previousPage = this.props.provider && this.props.provider.pagination ? this.props.provider.pagination.previousPage : "";
         let nextPage = this.props.provider && this.props.provider.pagination && this.props.provider.pagination ? this.props.provider.pagination.nextPage : 2;
 
-        if (this.state.users && this.state.users.length) {
-            var users = this.state.users.map(data => {
+        if (this.state.certificates && this.state.certificates.length) {
+            var certificates = this.state.certificates.map(data => {
                 return (<tr className="table-success">
-                    <td>{data.firstName + " " + data.lastName}</td>
-                    <td>{data.email}</td>
-                    <td>{data.mobile}</td>
+                    <td>{data.registration_id}</td>
+                    <td>{data.fullName}</td>
+                    <td>{data.course}</td>
+                    <td>{data.grade}</td>
                     <td>{data.createdAt ? moment(data.createdAt).format('MM/DD/YYYY') : ''}</td>
                     <td>{!data.status ? "Active" : "Blocked"}</td>
                     <td>
@@ -129,9 +153,20 @@ export default class Users extends Component {
         return (
             <div className="container-fluid">
                 <div className="table-wrapper">
+                    <div>
+                        <div>
+                            <input className="choose" type="file" onChange={this.onFileChange} />
+                            <div>
+                                <button className="space" onClick={this.onFileUpload}>
+                                    Upload!
+                                     </button>
+                            </div>
+
+                        </div>
+                    </div>
                     <div className="table-title">
                         <nav className="navbar navbar-light bg-light justify-content-between">
-                            <a className="navbar-brand">Brand_Logo</a>
+                            <a className="navbar-brand">Student List</a>
                             <form className="search-box form-inline">
                                 {/* <i class="material-icons">&#xE8B6;</i> */}
                                 <input id="table-serach" className="form-control mr-sm-2" type="search" placeholder="Search" onChange={this.searchProviders} aria-label="Search" />
@@ -140,16 +175,17 @@ export default class Users extends Component {
                         <table id="table-data" className="table-bordered table table-hover">
                             <thead className="thead-dark">
                                 <tr>
-                                    <th onClick={() => this.sortList('name')} scope="col">Full Name <i className="fa fa-sort"></i></th>
-                                    <th onClick={() => this.sortList('lowest_price')} scope="col">Email <i className="fa fa-sort"></i></th>
-                                    <th scope="col">Mobile <i className=""></i></th>
+                                    <th onClick={() => this.sortList('name')} scope="col">Registration Id <i className="fa fa-sort"></i></th>
+                                    <th onClick={() => this.sortList('lowest_price')} scope="col">Full Name <i className="fa fa-sort"></i></th>
+                                    <th scope="col">Course <i className=""></i></th>
+                                    <th scope="col"> Grade<i className=""></i></th>
                                     <th onClick={() => this.sortList('max_speed')} scope="col">Joined At <i className="fa fa-sort"></i></th>
                                     <th onClick={() => this.sortList('max_speed')} scope="col"> Status <i className="fa fa-sort"></i></th>
                                     <th scope="col">Actions <i className=""></i></th>
                                 </tr>
                             </thead>
                             <tbody className="" id="myTable">
-                                {users}
+                                {certificates}
                             </tbody>
                         </table>
 

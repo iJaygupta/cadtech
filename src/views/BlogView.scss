@@ -1,0 +1,58 @@
+
+
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+  
+  .social-link:hover, .social-link:focus {
+    background: #ddd;
+    text-decoration: none;
+    color: #555;
+  }
+  
+  .progress {
+    height: 10px;
+  }
+  .b-rounded {
+    border-radius: 0.6rem !important;
+  }
+  .b-shadow{
+      width: fit-content;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 0;
+    border-radius: 10px !important;
+    background: white;
+    box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
+  }
+  .main-container{
+    max-width: 1250px !important;
+    margin-top: 25px;
+    min-height: 100vh;
+   margin-bottom: 50px;
+    margin: auto;
+  }
+  .column{
+    max-width: 100%;
+    padding-left: .4rem;
+    padding-right: .4rem;
+  }
+  .bestseller{
+    border-radius: 20px;
+    display: inline-block;
+    padding: 0.4rem 0.7rem;
+    white-space: nowrap;
+    background-color: #0d8537;
+    color: white;
+    // font-weight: bold;
+    margin-top: 4%;
+  }

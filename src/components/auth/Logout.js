@@ -11,7 +11,8 @@ export default class UserProvider extends Component {
 
     logout = () => {
         localStorage.setItem('token', '');
-        this.context.setValue({ isAuth: false, token: '' });
+        localStorage.setItem('roles', '');
+        this.context.setValue({ isAuth: false, token: '', roles: '' });
         toast.success('Succesfully Logged Out', {
             position: toast.POSITION.TOP_RIGHT
         });

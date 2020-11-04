@@ -1,10 +1,11 @@
 import api from '../lib/request';
 import apiPaths from '../lib/api';
+import buildUrl from '../lib/utils';
 
 
-
-export const getCourses = (callback) => {
-    return api.setMethod('GET').sendRequest(apiPaths.getCourses, null, false, function (response) {
+export const getCourses = (filters, callback) => {
+    let getCoursesUrl = buildUrl(apiPaths.getCourses, filters)
+    return api.setMethod('GET').sendRequest(getCoursesUrl, null, false, function (response) {
         if (response) {
             callback(response.data);
         }
@@ -32,5 +33,14 @@ export const updateCourse = (courseId, data, callback) => {
 export const deleteCourse = (courseId, callback) => {
     return api.setMethod('DELETE').sendRequest(apiPaths.deleteCourse + courseId, null, true, function (response) {
         callback(response.data);
+    })
+};
+
+
+export const getCourseCategories = (callback) => {
+    return api.setMethod('GET').sendRequest(apiPaths.getCourseCategories, null, false, function (response) {
+        if (response) {
+            callback(response.data);
+        }
     })
 };
