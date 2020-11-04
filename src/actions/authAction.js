@@ -14,3 +14,11 @@ export const login = (data, callback) => {
         }
     })
 };
+
+export const changePassword = (data, callback) => {
+    return api.setMethod('PUT').sendRequest(apiPaths.changePassword, data, true, function (response) {
+        if (response) {
+            callback(response.data);
+        }
+    })
+}
