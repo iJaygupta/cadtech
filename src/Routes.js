@@ -4,6 +4,7 @@ import ContactView from "./views/ContactView";
 import AboutUsView from "./views/AboutUsView";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import GoogleLogin from "./components/auth/GoogleLogin";
 import Logout from "./components/auth/Logout";
 import BlogView from "./views/BlogView";
 import StudentCorner from "./components/student-corner/StudentCorner";
@@ -27,6 +28,7 @@ const Routes = () => {
       <Route exact path="/register" component={Register} />
       <Route path="/blogs" component={BlogView} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/google-login" component={GoogleLogin} />
       <Route exact path="/about-us" component={AboutUsView} />
       <Route exact path="/contact-us" component={ContactView} />
       <Route exact path="/courses" component={Course} />

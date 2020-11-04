@@ -2,6 +2,7 @@
 export default {
     signUp: `/api/v1/auth/register`,
     logIn: `/api/v1/auth/login`,
+    googleLogin: `/api/v1/auth/google`,
     getUserAccountDetails: `/api/v1/profile`,
     contactUs: `/api/v1/enquiry/contactus`,
     getCourses: `/api/v1/course`,
