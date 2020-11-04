@@ -15,7 +15,7 @@ import CourseDetail from "./components/course/CourseDetail";
 import Users from "./components/admin/users/Users";
 import NotFound from "./views/NotFound";
 import UserContext from "./context/userContext";
-import ChangePassword from "./components/changePassword/ChangePassword";
+import ChangePassword from "./components/change-password/ChangePassword";
 
 
 const Routes = () => {
@@ -33,7 +33,7 @@ const Routes = () => {
       <Route exact path="/student-corner" component={StudentCorner} />
       <Route exact path="/services" component={Services} />
       <Route exact path="/users" component={Users} />
-      <Route exact path="/student-certificates" component={certificates} />
+      {/* <Route exact path="/student-certificates" component={certificates} /> */}
       <Route exact path="/change-password" component={ChangePassword} />
       {isAuth ? (
         <>
