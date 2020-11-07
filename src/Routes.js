@@ -12,8 +12,8 @@ import Home from "./views/home/Home";
 import Profile from "./components/profile/Profile";
 import Course from "./components/course/Course";
 import CourseDetail from "./components/course/CourseDetail";
+import Certificates from "./components/admin/certificate/Bulk.js";
 import Users from "./components/admin/users/Users";
-import certificates from "./components/admin/certificate/Bulk.js";
 import Orders from "./components/admin/order/order.js";
 import Enquiries from "./components/admin/enquiries/Enquiries.js";
 import ChangePassword from "./components/change-password/ChangePassword";
@@ -39,6 +39,7 @@ const Routes = () => {
       <Route exact path="/student-certificates" component={certificates} />
       <Route exact path="/orders" component={Orders} />
       <Route exact path="/enquiries" component={Enquiries} />
+      <Route exact path="/student-certificates" component={Certificates} />
       <Route exact path="/change-password" component={ChangePassword} />
       {isAuth ? (
         <>
