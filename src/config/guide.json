@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Interiorsss Designer",
+        "meta_title": "ID",
+        "meta_description": "home",
+        "description": "Home Decore",
+        "slug": "id",
+        "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/civil.jpg"
+    },
+    {
+        "name": "Exterior Designer",
+        "meta_title": "ED",
+        "meta_description": "loan",
+        "description": "Out of home",
+        "slug": "ED",
+        "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/solid-works.jpg"
+    },
+    {
+        "name": "Planing",
+        "meta_title": "OR",
+        "meta_description": "Organization",
+        "description": "Organization Behaviour",
+        "slug": "Plan",
+        "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/cnc-programming.jpg"
+    },
+    {
+        "name": "3D Painting",
+        "meta_title": "Design",
+        "meta_description": "wall design",
+        "description": "3D wall design",
+        "slug": "3D",
+        "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/catia.jpg"
+    },
+    {
+        "name": "Machine Designing",
+        "meta_title": "ME",
+        "meta_description": "Machanic",
+        "description": "Machanical Engg",
+        "slug": "ME",
+        "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/computer-science.jpg"
+    },
+    {
+        "name": "WebSite Designing",
+        "meta_title": "Cs",
+        "meta_description": "Computer Science",
+        "description": "Design of website",
+        "slug": "WD",
+        "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/utils/about.jpg"
+    },
+    {
+        "name": "Mobile Appilication",
+        "meta_title": "CS",
+        "meta_description": "MA",
+        "description": "Mobile Application",
+        "slug": "MA",
+        "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/utils/about.jpg"
+    },
+    {
+        "name": "Vastu Consultancy",
+        "meta_title": "Vs",
+        "meta_description": "Vastu",
+        "description": "Vastu Shastra",
+        "slug": "VC",
+        "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/micro-processor.jpg"
+    },
+    {
+        "name": "Advertising Services",
+        "meta_title": "Media",
+        "meta_description": "Sm",
+        "description": "Social Media ",
+        "slug": "Sm",
+        "filename": "https://cadtech-container.s3.ap-south-1.amazonaws.com/plc.jpeg"
+    }
+]
