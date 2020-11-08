@@ -11,7 +11,9 @@ export default class Course extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            courses: {},
+            courses: {
+                items: courses
+            },
             courseCategories: [],
             searchKeyword: "",
             skip: "",
@@ -114,7 +116,6 @@ export default class Course extends Component {
     componentDidMount() {
         this.getCourseList();
         this.getCourseCategories();
-        this.setState({ courses: courses })
     }
 
     render() {

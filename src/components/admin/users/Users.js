@@ -102,9 +102,6 @@ export default class Users extends Component {
     }
 
     render() {
-
-        console.log(this.state)
-
         let totalRecords = this.props.provider ? this.props.provider.totalRecords : ""
         let totalResult = this.props.provider ? this.props.provider.totalResult : "";
         let previousPage = this.props.provider && this.props.provider.pagination ? this.props.provider.pagination.previousPage : "";

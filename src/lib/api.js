@@ -11,11 +11,13 @@ export default {
     deleteCourse: `/api/v1/course`,
     getCourseCategories: `/api/v1/category/course`,
     getLookUpData: `/api/v1/enquiry/lookup`,
+    getAllGuide: `/api/v1/guide`,
     getTeamMember: `/api/v1/enquiry/team`,
     addSubscribe: `/api/v1/enquiry/subscribe`,
     getAllUsers: `/api/v1/profile/all`,
     getBulkData: `/api/v1/enquiry/certificates/data/upload`,
     uploadCsv: `/api/v1/enquiry/certificates/data/upload`,
-    addToCart: `/api/v1/cart`
+    addToCart: `/api/v1/cart`,
+    getProductsByCart: `/api/v1/cart/products`,
 
 }

@@ -60,7 +60,7 @@ export default class ContactView extends Component {
         toast.success(response.message, {
           position: toast.POSITION.TOP_RIGHT
         });
-        this.props.history.push("/home");
+        this.props.history.push("/");
       } else {
         this.setAuthError(response.message);
       }

@@ -8,3 +8,11 @@ export const getLookUpData = (callback) => {
         }
     })
 };
+
+export const getAllGuide = (callback) => {
+    return api.setMethod('GET').sendRequest(apiPaths.getAllGuide, null, false, function (response) {
+        if (response) {
+            callback(response.data);
+        }
+    })
+};
