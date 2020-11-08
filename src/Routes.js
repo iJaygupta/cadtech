@@ -19,7 +19,6 @@ import AdminDashboard from "./components/admin/dashboard/DashBoard";
 import EditCourse from "./components/admin/course/EditCourse";
 import NotFound from "./views/NotFound";
 import UserContext from "./context/userContext";
-import ChangePassword from "./components/change-password/ChangePassword";
 
 
 const Routes = () => {
