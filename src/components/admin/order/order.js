@@ -112,13 +112,14 @@ export default class Orders extends Component {
 
         if (this.state.orders && this.state.orders.length) {
             var orders = this.state.orders.map(data => {
+                let products = data.productId.map(el => el.name)
                 return (<tr className="table-success">
-                    <td>{data.productId}</td>
-                    <td>{data.customer_id}</td>
-                    <td>{data.coupon}</td>
+                    <td>{products.join()}</td>
+                    <td>{data.customer_id._id}</td>
+                    <td>{data.customer_id.firstName}</td>
                     <td>{data.discount_total}</td>
                     <td>{data.subtotal}</td>
-                    <td>{data.paid  ? "True" : "False" }</td>
+                    <td>{data.paid ? "True" : "False"}</td>
                     <td>{data.createdAt ? moment(data.createdAt).format('MM/DD/YYYY') : ''}</td>
                     <td>{!data.status ? "Active" : "Blocked"}</td>
                     <td>
@@ -143,13 +144,13 @@ export default class Orders extends Component {
                         <table id="table-data" className="table-bordered table table-hover">
                             <thead className="thead-dark">
                                 <tr>
-                                    <th onClick={() => this.sortList('name')} scope="col">Product Id <i className="fa fa-sort"></i></th>
-                                    <th onClick={() => this.sortList('lowest_price')} scope="col">Customer id <i className="fa fa-sort"></i></th>
-                                    <th scope="col">Coupon <i className=""></i></th>
+                                    <th onClick={() => this.sortList('name')} scope="col">Course <i className="fa fa-sort"></i></th>
+                                    <th scope="col">Customer Id <i className=""></i></th>
+                                    <th onClick={() => this.sortList('lowest_price')} scope="col">Customer Name <i className="fa fa-sort"></i></th>
                                     <th scope="col">Discount total <i className=""></i></th>
                                     <th scope="col">Subtotal <i className=""></i></th>
                                     <th scope="col">Paid <i className=""></i></th>
-                                    <th onClick={() => this.sortList('max_speed')} scope="col">Joined At <i className="fa fa-sort"></i></th>
+                                    <th onClick={() => this.sortList('max_speed')} scope="col">Created At <i className="fa fa-sort"></i></th>
                                     <th onClick={() => this.sortList('max_speed')} scope="col"> Status <i className="fa fa-sort"></i></th>
                                     <th scope="col">Actions <i className=""></i></th>
                                 </tr>
