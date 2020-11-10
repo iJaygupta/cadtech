@@ -14,6 +14,8 @@ import Course from "./components/course/Course";
 import CourseDetail from "./components/course/CourseDetail";
 import Certificates from "./components/admin/certificate/Bulk.js";
 import Users from "./components/admin/users/Users";
+import Orders from "./components/admin/order/order.js";
+import Enquiries from "./components/admin/enquiries/Enquiries.js";
 import ChangePassword from "./components/change-password/ChangePassword";
 import AdminDashboard from "./components/admin/dashboard/DashBoard";
 import EditCourse from "./components/admin/course/EditCourse";
@@ -36,6 +38,8 @@ const Routes = () => {
       <Route exact path="/student-corner" component={StudentCorner} />
       <Route exact path="/services" component={Services} />
       <Route exact path="/users" component={Users} />
+      <Route exact path="/orders" component={Orders} />
+      <Route exact path="/enquiries" component={Enquiries} />
       <Route exact path="/student-certificates" component={Certificates} />
       <Route exact path="/change-password" component={ChangePassword} />
       <Route exact path="/admin/dashboard" component={AdminDashboard} />

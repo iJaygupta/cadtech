@@ -19,6 +19,8 @@ export default {
     getBulkData: `/api/v1/enquiry/certificates/data/upload`,
     uploadCsv: `/api/v1/enquiry/certificates/data/upload`,
     addToCart: `/api/v1/cart`,
+    getAllOrders: `/api/v1/order`,
+    getAllEnquiry: `/api/v1/enquiry`,
     getProductsByCart: `/api/v1/cart/products`,
 
 }

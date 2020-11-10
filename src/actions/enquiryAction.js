@@ -41,3 +41,12 @@ export const uploadCsv = (data, callback) => {
         }
     })
 };
+
+export const getAllEnquiry = (filters, callback) => {
+    let getAllUsersUrl = buildUrl(apiPaths.getAllEnquiry, filters)
+    return api.setMethod('GET').sendRequest(getAllUsersUrl, null, true, function (response) {
+        if (response) {
+            callback(response.data);
+        }
+    })
+};
