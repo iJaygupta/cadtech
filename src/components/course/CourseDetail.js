@@ -1,9 +1,11 @@
 import React from 'react'
 import './CourseDetail.scss'
 import { getCourseById } from '../../actions/courseAction';
-import { addToCart } from '../../actions/orderAction';
+import { addToCart, getProductsByCart } from '../../actions/orderAction';
 import { toast } from 'react-toastify';
-
+import CheckoutModal from '../checkout-modal/CheckoutModal'
+import { v4 as uuidv4 } from 'uuid';
+// ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
 
 
 export default class CourseDetail extends React.Component {
@@ -11,26 +13,29 @@ export default class CourseDetail extends React.Component {
         super(props)
         this.state = {
             courseDetail: '',
-            relatedCourses: []
+            relatedCourses: [],
+            cartItems: []
         }
     }
 
     addToCart = (courseId) => {
+        if (!localStorage.getItem('uuid')) {
+            localStorage.setItem('uuid', uuidv4());
+        }
+        let uuid = localStorage.getItem('uuid');
         let data = {
-            product_id: courseId
+            product_id: courseId,
+            uuid
         }
         addToCart(data, (response) => {
             if (response && response.status == "OK") {
-                toast.success(response.message, {
-                    position: toast.POSITION.TOP_RIGHT
-                });
+                this.getProductsByCart(uuid);
             } else {
                 toast.error("Something Went Wrong", {
                     position: toast.POSITION.TOP_RIGHT
                 });
             }
         })
-
     }
 
 
@@ -47,7 +52,16 @@ export default class CourseDetail extends React.Component {
                 }
             })
         }
+    }
 
+    getProductsByCart = (uuid) => {
+        if (uuid) {
+            getProductsByCart(uuid, (response) => {
+                if (response && response.status == "OK") {
+                    this.setState({ cartItems: response.data.product_id })
+                }
+            })
+        }
     }
 
     componentDidMount() {
@@ -55,6 +69,8 @@ export default class CourseDetail extends React.Component {
     }
 
     render() {
+        let role = localStorage.getItem('roles') || '';
+
         return (
             <div className="column">
                 <div className="main-container m-auto">
@@ -109,13 +125,17 @@ export default class CourseDetail extends React.Component {
                                                 </div>
                                                 <div class="columns cartBtns mt-2">
                                                     <div class="column col-5 col-md-6">
-                                                        <button class="btn btn-lg btn-primary buyBtn btn-block" onClick={() => { this.addToCart(this.state.courseDetail._id) }}>Add to Cart</button>
+                                                        <button data-toggle="modal" data-target="#addModal" class="btn btn-lg btn-primary buyBtn btn-block" onClick={() => { this.addToCart(this.state.courseDetail._id) }}>Add to Cart</button>
+                                                        {role.includes('user') &&
+                                                            <button class="btn btn-lg btn-primary buyBtn btn-block" onClick={() => { this.props.history.push(`/edit-course/${this.state.courseDetail._id}`) }}>Edit Course</button>
+                                                        }
                                                     </div>
                                                 </div>
 
                                             </div>
 
                                         </div>
+                                        {<CheckoutModal cartItems={this.state.cartItems} />}
                                     </div>
                                 )
                             }

@@ -114,9 +114,10 @@ export default class Enquiries extends Component {
             var enquiry = this.state.enquiry.map(data => {
                 return (<tr className="table-success">
                     <td>{data.email}</td>
-                    <td>{data.query}</td>
+                    <td>{data.name || 'N/A'}</td>
+                    <td>{data.message || 'N/A'}</td>
+                    <td>{data.slug}</td>
                     <td>{data.createdAt ? moment(data.createdAt).format('MM/DD/YYYY') : ''}</td>
-                    <td>{!data.status ? "Active" : "Blocked"}</td>
                     <td>
                         <a href="#" className="view" title="View" data-toggle="tooltip"><i className="material-icons">&#xE417;</i></a>
                     </td>
@@ -139,10 +140,11 @@ export default class Enquiries extends Component {
                         <table id="table-data" className="table-bordered table table-hover">
                             <thead className="thead-dark">
                                 <tr>
-                                    <th onClick={() => this.sortList('name')} scope="col">Email <i className="fa fa-sort"></i></th>
-                                    <th onClick={() => this.sortList('lowest_price')} scope="col"> Query <i className="fa fa-sort"></i></th>
-                                    <th onClick={() => this.sortList('max_speed')} scope="col">Joined At <i className="fa fa-sort"></i></th>
-                                    <th onClick={() => this.sortList('max_speed')} scope="col"> Status <i className="fa fa-sort"></i></th>
+                                    <th onClick={() => this.sortList('email')} scope="col">Email <i className="fa fa-sort"></i></th>
+                                    <th onClick={() => this.sortList('name')} scope="col"> Name <i className="fa fa-sort"></i></th>
+                                    <th onClick={() => this.sortList('message')} scope="col"> Message <i className="fa fa-sort"></i></th>
+                                    <th onClick={() => this.sortList('slug')} scope="col"> Slug <i className="fa fa-sort"></i></th>
+                                    <th onClick={() => this.sortList('createdAt')} scope="col">Created At <i className="fa fa-sort"></i></th>
                                     <th scope="col">Actions <i className=""></i></th>
                                 </tr>
                             </thead>
