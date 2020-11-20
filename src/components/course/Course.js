@@ -131,7 +131,7 @@ export default class Course extends Component {
                                 <a class="btn btn-outline-success my-2 my-sm-0" onClick={this.searchCourses}>Search</a>
                             </form>
                         </nav>
-                        < div className="container-fluid px-4">
+                        < div className="container-fluid">
                             <div className="btn-group">
                                 <button type="button" className="form-control btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Categories

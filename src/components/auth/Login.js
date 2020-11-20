@@ -93,16 +93,16 @@ export default class Login extends Component {
                         <Form className="form-signin login-form" onSubmit={this.handleSubmit}>
                             <h3 className="text-uppercase text-center font-weight-bold mb-4">Login</h3>
 
-                            <FormGroup className="form-label-group py-2">
+                            <FormGroup className="form-label-group">
                                 <Label for="userName">Email or Phone</Label>
                                 <Input className="form-control" type="text" name="userName" placeholder="Email" onChange={this.handleChange} />
-                                <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['userName'] ? "This Field is required" : ""}</span>
+                                <span style={{ "color": "red", "position":"absolute" }} className="errorMsg ml-2">{this.state.errorParam['userName'] ? "This Field is required" : ""}</span>
 
                             </FormGroup>
-                            <FormGroup className="form-label-group py-2">
+                            <FormGroup className="form-label-group">
                                 <Label for="examplePassword">Password</Label>
                                 <Input className="form-control" type="password" name="password" placeholder="Password" onChange={this.handleChange} />
-                                <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['password'] ? "Password is required" : ""}</span>
+                                <span style={{ "color": "red", "position":"absolute" }} className="errorMsg ml-2">{this.state.errorParam['password'] ? "Password is required" : ""}</span>
 
                             </FormGroup>
                             <FormGroup check className="ml-2 my-3">
@@ -114,7 +114,7 @@ export default class Login extends Component {
                             {this.state.authError && <Alert className="mt-3" color="danger">
                                 {this.state.authError}
                             </Alert>}
-                            <Button className="btnlogin py-2 my-4 btn btn-lg btn-primary btn-block text-uppercase" color="primary" block>Login</Button>
+                            <Button className="btnlogin py-2 my-4 btn btn-lg  text-uppercase" color="primary" block>Login</Button>
                         </Form>
                     </Col>
                 </Row>
