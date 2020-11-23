@@ -92,7 +92,7 @@ export default class StudentCorner extends React.Component {
                                         <Label for="captcha">Captcha</Label>
                                         <Input type="text" value={this.state.captcha} id="captcha" name="captcha" placeholder="Captcha" onChange={this.handleChange} required />
                                     </FormGroup>
-                                    <Button color="primary" size="sm" block>Downlaod Certificate</Button>
+                                    <Button color="primary" size="md" block>Downlaod Certificate</Button>
                                 </Form>
                                 {this.state.authError && <Alert className="mt-3" color="danger">
                                     {this.state.authError}

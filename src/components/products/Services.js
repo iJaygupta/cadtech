@@ -54,7 +54,7 @@ export default class Guide extends Component {
                                     <div key={index} className="col-md-6">
                                         <Link to="#" className="item-service">
                                             <div className="service-image">
-                                                <img width="744" height="420" src={item.filename} alt="" className="img-fluid" />
+                                                <img width="300" height="200" src={item.filename} alt="" className="img-fluid" />
                                             </div>
                                             <div className="service-text">
                                                 <h3>{item.name}</h3>

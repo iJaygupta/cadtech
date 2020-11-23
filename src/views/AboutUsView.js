@@ -99,7 +99,7 @@ export default class AboutUsView extends Component {
                       data-aos="fade-up"
                       data-aos-delay="100"
                     >
-                      <i className="fas fa-phone-square "></i>
+                      <i className="fas fa-rotate-90 fa-phone-square "></i>
                       <h4>
                         <a href="#">PHONE NUMBER</a>
                       </h4>

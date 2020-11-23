@@ -102,7 +102,7 @@ body {
 
 .form-label-group {
   position: relative;
-  margin-bottom: 1rem;
+  // margin-bottom: 1rem;
 }
 
 .form-label-group input {
@@ -110,18 +110,18 @@ body {
   border-radius: 2rem;
 }
 .form-label-group select{
-	height: 3.1rem;
+	height: 2.7rem;
 	border-radius: 2rem;
   }
 
 .form-label-group>input,
 .form-label-group>label {
-  padding: var(--input-padding-y) var(--input-padding-x);
+  padding: 9px 8px;
 }
 
-.form-label-group>label {
-  position: absolute;
-}
+// .form-label-group>label {
+//   position: absolute;
+// }
 
 .form-label-group input::-webkit-input-placeholder {
   color: transparent;
@@ -143,10 +143,10 @@ body {
   color: transparent;
 }
 
-.form-label-group input:not(:placeholder-shown) {
-  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (3 / 2));
-  padding-bottom: calc(var(--input-padding-y) / 3);
-}
+// .form-label-group input:not(:placeholder-shown) {
+//   padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (3 / 2));
+//   padding-bottom: calc(var(--input-padding-y) / 3);
+// }
 
 .form-label-group input:not(:placeholder-shown)~label {
   padding-top: calc(var(--input-padding-y) / 3);
@@ -154,6 +154,9 @@ body {
   font-size: 12px;
   color: #777;
 }
+.maxl{
+  flex-wrap: inherit !important;
+  }
 
 /* Fallback for Edge
 -------------------------------------------------- */
@@ -178,4 +181,9 @@ body {
   .form-label-group input:-ms-input-placeholder {
     color: #777;
   }
+}
+
+/*media....*/
+@media screen and (min-width: 480px) {
+  
 }
