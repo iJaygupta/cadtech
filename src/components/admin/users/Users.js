@@ -128,7 +128,7 @@ export default class Users extends Component {
                 <div className="table-wrapper">
                     <div className="table-title">
                         <nav className="navbar navbar-light bg-light justify-content-between">
-                            <a className="navbar-brand">Brand_Logo</a>
+                            <a className="navbar-brand">USERS</a>
                             <form className="search-box form-inline">
                                 {/* <i class="material-icons">&#xE8B6;</i> */}
                                 <input id="table-serach" className="form-control mr-sm-2" type="search" placeholder="Search" onChange={this.searchProviders} aria-label="Search" />
@@ -142,7 +142,7 @@ export default class Users extends Component {
                                     <th scope="col">Mobile <i className=""></i></th>
                                     <th onClick={() => this.sortList('max_speed')} scope="col">Joined At <i className="fa fa-sort"></i></th>
                                     <th onClick={() => this.sortList('max_speed')} scope="col"> Status <i className="fa fa-sort"></i></th>
-                                    <th scope="col">Actions <i className=""></i></th>
+                                    <th onClick={() => this.sortList('max_speed')} scope="col">Actions  <i className="fa fa-sort" ></i></th>
                                 </tr>
                             </thead>
                             <tbody className="" id="myTable">
