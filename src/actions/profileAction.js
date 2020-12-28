@@ -31,3 +31,9 @@ export const getAllUsers = (filters, callback) => {
         }
     })
 };
+
+export const updateUserStatus = (data, callback) => {
+    return api.setMethod('PUT').sendRequest(apiPaths.updateUserStatus, data, false, function (response) {
+        callback(response.data);
+    })
+};

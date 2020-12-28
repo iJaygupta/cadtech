@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import $ from "jquery";
 import './Users.css';
-import { getAllUsers } from '../../../actions/profileAction';
+import { getAllUsers, updateUserStatus } from '../../../actions/profileAction';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 
@@ -101,6 +101,25 @@ export default class Users extends Component {
         });
     }
 
+    updateUser = (_id, status) => {
+        let data = {
+            userId: _id,
+            status: Number(!status)
+        }
+        updateUserStatus(data, (response) => {
+            if (response && response.status == "OK") {
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+                this.getUsersList();
+            } else {
+                toast.error(response.message || response.msg, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }
+        })
+    }
+
     render() {
         let totalRecords = this.props.provider ? this.props.provider.totalRecords : ""
         let totalResult = this.props.provider ? this.props.provider.totalResult : "";
@@ -114,7 +133,8 @@ export default class Users extends Component {
                     <td>{data.email}</td>
                     <td>{data.mobile}</td>
                     <td>{data.createdAt ? moment(data.createdAt).format('MM/DD/YYYY') : ''}</td>
-                    <td>{!data.status ? "Active" : "Blocked"}</td>
+                    <td>{data.status ? "Active" : "Blocked"}</td>
+                    <td><button onClick={() => { this.updateUser(data._id, data.status) }} >{data.status ? "Block" : "Unblock"}</button></td>
                     <td>
                         <a href="#" className="view" title="View" data-toggle="tooltip"><i className="material-icons">&#xE417;</i></a>
                     </td>
