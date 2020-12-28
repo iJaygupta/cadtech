@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import $ from "jquery";
 import './Users.css';
-import { getAllUsers } from '../../../actions/profileAction';
+import { getAllUsers, updateUserStatus } from '../../../actions/profileAction';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 
@@ -101,6 +101,25 @@ export default class Users extends Component {
         });
     }
 
+    updateUser = (_id, status) => {
+        let data = {
+            userId: _id,
+            status: Number(!status)
+        }
+        updateUserStatus(data, (response) => {
+            if (response && response.status == "OK") {
+                toast.success(response.message, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+                this.getUsersList();
+            } else {
+                toast.error(response.message || response.msg, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }
+        })
+    }
+
     render() {
         let totalRecords = this.props.provider ? this.props.provider.totalRecords : ""
         let totalResult = this.props.provider ? this.props.provider.totalResult : "";
@@ -114,7 +133,8 @@ export default class Users extends Component {
                     <td>{data.email}</td>
                     <td>{data.mobile}</td>
                     <td>{data.createdAt ? moment(data.createdAt).format('MM/DD/YYYY') : ''}</td>
-                    <td>{!data.status ? "Active" : "Blocked"}</td>
+                    <td>{data.status ? "Active" : "Blocked"}</td>
+                    <td><button onClick={() => { this.updateUser(data._id, data.status) }} >{data.status ? "Block" : "Unblock"}</button></td>
                     <td>
                         <a href="#" className="view" title="View" data-toggle="tooltip"><i className="material-icons">&#xE417;</i></a>
                     </td>
@@ -128,7 +148,7 @@ export default class Users extends Component {
                 <div className="table-wrapper">
                     <div className="table-title">
                         <nav className="navbar navbar-light bg-light justify-content-between">
-                            <a className="navbar-brand">Brand_Logo</a>
+                            <a className="navbar-brand">USERS</a>
                             <form className="search-box form-inline">
                                 {/* <i class="material-icons">&#xE8B6;</i> */}
                                 <input id="table-serach" className="form-control mr-sm-2" type="search" placeholder="Search" onChange={this.searchProviders} aria-label="Search" />
@@ -142,7 +162,7 @@ export default class Users extends Component {
                                     <th scope="col">Mobile <i className=""></i></th>
                                     <th onClick={() => this.sortList('max_speed')} scope="col">Joined At <i className="fa fa-sort"></i></th>
                                     <th onClick={() => this.sortList('max_speed')} scope="col"> Status <i className="fa fa-sort"></i></th>
-                                    <th scope="col">Actions <i className=""></i></th>
+                                    <th onClick={() => this.sortList('max_speed')} scope="col">Actions  <i className="fa fa-sort" ></i></th>
                                 </tr>
                             </thead>
                             <tbody className="" id="myTable">

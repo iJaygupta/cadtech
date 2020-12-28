@@ -22,5 +22,5 @@ export default {
     getAllOrders: `/api/v1/order`,
     getAllEnquiry: `/api/v1/enquiry`,
     getProductsByCart: `/api/v1/cart/products`,
-
+    updateUserStatus :`/api//v1/profile/status`
 }
