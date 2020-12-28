@@ -111,21 +111,21 @@ export default class Register extends Component {
                                         <Input className="form-control" type="text" name="firstName" placeholder="First Name *"
                                             onChange={this.handleChange}
                                         />
-                                        <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['firstName'] ? "First Name is required" : ""}</span>
+                                        <span style={{ "color": "red", "position":"absolute" }} className="errorMsg ml-2">{this.state.errorParam['firstName'] ? "First Name is required" : ""}</span>
                                     </FormGroup>
                                     <FormGroup className="form-label-group">
                                         <Label for="lastName">Last Name *</Label>
                                         <Input className="form-control" type="text" name="lastName" placeholder="last name"
                                             onChange={this.handleChange}
                                         />
-                                        <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['lastName'] ? "Lastname is required" : ""}</span>
+                                        <span style={{ "color": "red", "position":"absolute" }} className="errorMsg ml-2">{this.state.errorParam['lastName'] ? "Lastname is required" : ""}</span>
                                     </FormGroup>
                                     <FormGroup className="form-label-group">
                                         <Label for="password">Password *</Label>
                                         <Input className="form-control" type="password" name="password" placeholder="password"
                                             onChange={this.handleChange}
                                         />
-                                        <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['password'] ? "Password is required" : ""}</span>
+                                        <span style={{ "color": "red", "position":"absolute" }} className="errorMsg ml-2">{this.state.errorParam['password'] ? "Password is required" : ""}</span>
 
                                     </FormGroup>
                                     <FormGroup className="form-label-group">
@@ -133,7 +133,7 @@ export default class Register extends Component {
                                         <Input className="form-control" type="password" name="confirmPassword" placeholder="Confirm password"
                                             onChange={this.handleChange}
                                         />
-                                        <span style={{ "color": "red" }} className="errorMsg ml-3">{(this.state.errorParam['confirmPassword'] === true) ? "Confirm password is required" : (this.state.errorParam['confirmPassword'] === 1) ? "Enter same password as above" : ""}</span>
+                                        <span style={{ "color": "red", "position":"absolute" }} className="errorMsg ml-2">{(this.state.errorParam['confirmPassword'] === true) ? "Confirm password is required" : (this.state.errorParam['confirmPassword'] === 1) ? "Enter same password as above" : ""}</span>
 
                                     </FormGroup>
                                     <Row form className="maxl ml-4 form-label-group">
@@ -172,11 +172,12 @@ export default class Register extends Component {
                                         <Input className="form-control" type="text" name="mobile" placeholder="First Name"
                                             onChange={this.handleChange}
                                         />
-                                        <span style={{ "color": "red" }} className="errorMsg ml-3">{this.state.errorParam['mobile'] ? "Mobile is required" : ""}</span>
+                                        <span style={{ "color": "red", "position":"absolute" }} className="errorMsg ml-2">{this.state.errorParam['mobile'] ? "Mobile is required" : ""}</span>
 
                                     </FormGroup>
                                     <FormGroup className="form-label-group">
-                                        <Label for="sequrity"></Label>
+                                        <Label for="sequrity">Select Courese *</Label>
+
                                         <Input className="" type="select" name="select" name="education" 
                                             onChange={this.handleChange}
                                         >
@@ -197,7 +198,7 @@ export default class Register extends Component {
 
                                         />
                                     </FormGroup>
-                                    <Button className="btnRegister py-2 my-4 btn btn-lg btn-primary btn-block text-uppercase btn btn-primary btn-block" color="primary" size="sm" block
+                                    <Button className="btnRegister py-2 my-4 btn text-uppercase btn btn-primary btn-block" color="primary" size="lg" block
                                         onClick={this.handleSubmit}
                                     >Register</Button>
                                 </Col>

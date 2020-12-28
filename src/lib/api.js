@@ -2,6 +2,7 @@
 export default {
     signUp: `/api/v1/auth/register`,
     logIn: `/api/v1/auth/login`,
+    changePassword: `/api/v1/profile/changePassword`,
     getUserAccountDetails: `/api/v1/profile`,
     contactUs: `/api/v1/enquiry/contactus`,
     getCourses: `/api/v1/course`,
@@ -11,11 +12,15 @@ export default {
     deleteCourse: `/api/v1/course`,
     getCourseCategories: `/api/v1/category/course`,
     getLookUpData: `/api/v1/enquiry/lookup`,
+    getAllGuide: `/api/v1/guide`,
     getTeamMember: `/api/v1/enquiry/team`,
     addSubscribe: `/api/v1/enquiry/subscribe`,
     getAllUsers: `/api/v1/profile/all`,
     getBulkData: `/api/v1/enquiry/certificates/data/upload`,
     uploadCsv: `/api/v1/enquiry/certificates/data/upload`,
-    addToCart: `/api/v1/cart`
+    addToCart: `/api/v1/cart`,
+    getAllOrders: `/api/v1/order`,
+    getAllEnquiry: `/api/v1/enquiry`,
+    getProductsByCart: `/api/v1/cart/products`,
 
 }

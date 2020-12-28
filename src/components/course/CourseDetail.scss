@@ -1,4 +1,50 @@
 
+.circle {
+    border-radius: 50% !important;
+}
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    text-align: left;
+    width: 100%;
+}
+.table td, .spectre .table th {
+    border-bottom: .05rem solid #70bfdb;
+    padding: .6rem .4rem;
+}
+.btn.btn-error {
+    background: #e85600;
+    border-color: #d95000;
+    color: #fff;
+}
+.btn.btn-sm {
+    height: 1.7rem;
+	width: 1.7rem;
+    padding: 0rem;
+}
+.btn.btn-action {
+    padding-left: 0;
+    padding-right: 0;
+    width: 1.8rem;
+	line-height: 1;
+}
+
+.btn.btn-action.btn-sm i{
+    font-size: .9rem;
+}
+@media (max-width: 720px){
+  button.float-left.close{
+    display: none !important;
+  }
+}
+@media (min-width: 992px){
+	.modal-lg, .modal-xl {
+		max-width: 750px !important;
+  }
+  button.float-left.close{
+    font-size: 20px !important;
+  }
+}
 
 .social-link {
     width: 30px;

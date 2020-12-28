@@ -1,18 +1,18 @@
 
 import React, { Component } from 'react';
 import $ from "jquery";
-import './Users.css';
-import { getAllUsers } from '../../../actions/profileAction';
+import './order.css';
+import { getAllOrders } from '../../../actions/orderAction';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 
 
 
-export default class Users extends Component {
+export default class Orders extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: [],
+            orders: [],
             skip: "",
             limit: "",
             searchKeyword: "",
@@ -38,10 +38,10 @@ export default class Users extends Component {
         });
     }
 
-    getUsersList = (filters) => {
-        getAllUsers(filters, (response) => {
+    getOrdersList = (filters) => {
+        getAllOrders(filters, (response) => {
             if (response && response.status == "OK") {
-                this.setState({ users: response.data.items })
+                this.setState({ orders: response.data.items })
                 if (!filters) {
                     toast.success(response.message, {
                         position: toast.POSITION.TOP_RIGHT
@@ -56,7 +56,7 @@ export default class Users extends Component {
     }
 
     componentDidMount() {
-        this.getUsersList();
+        this.getOrdersList();
     }
 
     applyFilter = () => {
@@ -69,7 +69,7 @@ export default class Users extends Component {
             page: this.state.page,
             searchKeyword: this.state.searchKeyword.trim()
         }
-        this.getUsersList(filters);
+        this.getOrdersList(filters);
     }
 
     searchProviders = (e) => {
@@ -102,17 +102,24 @@ export default class Users extends Component {
     }
 
     render() {
+
+        console.log(this.state)
+
         let totalRecords = this.props.provider ? this.props.provider.totalRecords : ""
         let totalResult = this.props.provider ? this.props.provider.totalResult : "";
         let previousPage = this.props.provider && this.props.provider.pagination ? this.props.provider.pagination.previousPage : "";
         let nextPage = this.props.provider && this.props.provider.pagination && this.props.provider.pagination ? this.props.provider.pagination.nextPage : 2;
 
-        if (this.state.users && this.state.users.length) {
-            var users = this.state.users.map(data => {
+        if (this.state.orders && this.state.orders.length) {
+            var orders = this.state.orders.map(data => {
+                let products = data.productId.map(el => el.name)
                 return (<tr className="table-success">
-                    <td>{data.firstName + " " + data.lastName}</td>
-                    <td>{data.email}</td>
-                    <td>{data.mobile}</td>
+                    <td>{products.join()}</td>
+                    <td>{data.customer_id._id}</td>
+                    <td>{data.customer_id.firstName}</td>
+                    <td>{data.discount_total}</td>
+                    <td>{data.subtotal}</td>
+                    <td>{data.paid ? "True" : "False"}</td>
                     <td>{data.createdAt ? moment(data.createdAt).format('MM/DD/YYYY') : ''}</td>
                     <td>{!data.status ? "Active" : "Blocked"}</td>
                     <td>
@@ -137,16 +144,19 @@ export default class Users extends Component {
                         <table id="table-data" className="table-bordered table table-hover">
                             <thead className="thead-dark">
                                 <tr>
-                                    <th onClick={() => this.sortList('name')} scope="col">Full Name <i className="fa fa-sort"></i></th>
-                                    <th onClick={() => this.sortList('lowest_price')} scope="col">Email <i className="fa fa-sort"></i></th>
-                                    <th scope="col">Mobile <i className=""></i></th>
-                                    <th onClick={() => this.sortList('max_speed')} scope="col">Joined At <i className="fa fa-sort"></i></th>
+                                    <th onClick={() => this.sortList('name')} scope="col">Course <i className="fa fa-sort"></i></th>
+                                    <th scope="col">Customer Id <i className=""></i></th>
+                                    <th onClick={() => this.sortList('lowest_price')} scope="col">Customer Name <i className="fa fa-sort"></i></th>
+                                    <th scope="col">Discount total <i className=""></i></th>
+                                    <th scope="col">Subtotal <i className=""></i></th>
+                                    <th scope="col">Paid <i className=""></i></th>
+                                    <th onClick={() => this.sortList('max_speed')} scope="col">Created At <i className="fa fa-sort"></i></th>
                                     <th onClick={() => this.sortList('max_speed')} scope="col"> Status <i className="fa fa-sort"></i></th>
                                     <th scope="col">Actions <i className=""></i></th>
                                 </tr>
                             </thead>
                             <tbody className="" id="myTable">
-                                {users}
+                                {orders}
                             </tbody>
                         </table>
 
